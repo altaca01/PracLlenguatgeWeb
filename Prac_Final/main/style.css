@@ -1,0 +1,338 @@
+/* =========================================
+   1. VARIABLES I RESET BÀSIC
+   ========================================= */
+:root {
+    --color-primari: #ff6b00; /* Taronja Hoquei */
+    --color-secundari: #0044cc; /* Blau Pista */
+    --color-fosc: #111111;
+    --color-clar: #f4f4f4;
+    --color-text: #333333;
+    
+    --font-titols: 'Arial Black', sans-serif;
+    --font-cos: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    cursor: none; /* AMAGUEM EL RATOLÍ DE WINDOWS PER FER SERVIR EL NOSTRE */
+}
+
+body {
+    font-family: var(--font-cos);
+    background-color: var(--color-fosc); /* Fons fosc per defecte */
+    color: var(--color-text);
+    overflow-x: hidden; /* Evitem scroll lateral */
+}
+
+a, button {
+    cursor: none; /* Assegurem que cap element mostri el punter natiu */
+}
+
+/* =========================================
+   2. CURSOR PERSONALITZAT
+   ========================================= */
+.cursor-circle {
+    position: fixed;
+    top: 0;
+    left: 0;
+    transform: translate(-50%, -50%); /* Centrat exacte al punter */
+    border-radius: 50%;
+    pointer-events: none; /* El click traspassa el dibuix */
+    z-index: 10000;
+}
+
+
+
+/* El cercle exterior */
+.cursor-circle {
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--color-primari);
+}
+
+/* Estat quan fem hover sobre un enllaç (s'activa via JS) */
+.cursor-circle.hovered {
+    width: 60px;
+    height: 60px;
+    background-color: rgba(255, 107, 0, 0.2); /* Taronja transparent */
+    border-color: transparent;
+}
+
+/* =========================================
+   3. NAVEGACIÓ (HEADER)
+   ========================================= */
+header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding: 20px 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000; /* Per sobre de tot */
+    transition: 0.3s;
+    mix-blend-mode: difference; /* Truc pro: es veu bé sobre fons clar i fosc */
+    color: white;
+}
+
+header.scrolled {
+    background: rgba(0, 0, 0, 0.9);
+    padding: 10px 50px;
+    mix-blend-mode: normal; /* Tornem a mode normal quan té fons */
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+    gap: 30px;
+}
+
+nav a {
+    text-decoration: none;
+    color: white;
+    font-weight: 500;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    position: relative;
+}
+
+nav a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    background: var(--color-primari);
+    bottom: -5px;
+    left: 0;
+    transition: 0.3s;
+}
+
+nav a:hover::after {
+    width: 100%;
+}
+
+/* =========================================
+   4. PORTADA FIXA (HERO SECTION)
+   ========================================= */
+.hero-fixed {
+    /* LA CLAU DE L'EFECTE: ES QUEDA AL FONS */
+    position: fixed; 
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: 1; /* Capa inferior */
+    
+    /* Imatge de fons */
+    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('allargadaStick2K.png');
+    background-size: cover;
+    background-position: center;
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding-top: 25vh;
+    align-items: center;
+    text-align: center;
+    color: white;
+}
+
+.hero-content h1 {
+    font-family: var(--font-titols);
+    font-size: 5rem;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    min-height: 1.2em; /* Reserva espai perquè no salti */
+}
+
+.hero-subtitle {
+    font-size: 1.5rem;
+    letter-spacing: 5px;
+    margin-bottom: 40px;
+    opacity: 0.8;
+}
+
+/* Botó Principal */
+.btn-cta {
+    padding: 15px 40px;
+    font-size: 1rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: white;
+    background: var(--color-primari);
+    border: none;
+    border-radius: 50px;
+    transition: 0.3s;
+    letter-spacing: 1px;
+}
+
+.btn-cta:hover {
+    background: white;
+    color: var(--color-primari);
+    transform: scale(1.05);
+}
+
+/* Indicador Scroll */
+.scroll-indicator {
+    position: absolute;
+    bottom: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    opacity: 0.7;
+    animation: bounce 2s infinite;
+}
+
+.mouse-icon {
+    width: 30px;
+    height: 50px;
+    border: 2px solid white;
+    border-radius: 20px;
+    margin-top: 10px;
+    position: relative;
+}
+
+.mouse-icon::before {
+    content: '';
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 4px;
+    height: 8px;
+    background: white;
+    border-radius: 2px;
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+    40% {transform: translateY(-10px);}
+    60% {transform: translateY(-5px);}
+}
+
+/* =========================================
+   5. CONTINGUT QUE PUJA (INTRO)
+   ========================================= */
+.content-scroll {
+    margin-top: 120vh; 
+    position: relative;
+    z-index: 2; 
+    background-color: var(--color-clar); 
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 100px 20px;
+    box-shadow: 0 -10px 30px rgba(0,0,0,0.5); 
+}
+
+.intro-container {
+    max-width: 800px;
+    text-align: center;
+}
+
+/* --- CANVI PRINCIPAL AQUÍ (TEXT REVEAL) --- */
+.intro-container h2 {
+    font-family: var(--font-titols);
+    font-size: 4rem; /* Una mica més gran queda millor */
+    margin-bottom: 30px;
+    
+    /* 1. Text buit amb contorn */
+    color: transparent; 
+    -webkit-text-stroke: 1px #ff6b00; /* Contorn taronja */
+    
+    /* 2. El "líquid" taronja que l'omplirà */
+    background-image: linear-gradient(var(--color-primari), var(--color-primari));
+    background-repeat: no-repeat;
+    
+    /* 3. Retallem el fons perquè només es vegi dins les lletres */
+    -webkit-background-clip: text;
+    background-clip: text;
+    
+    /* 4. Inicialment buit (0% d'amplada) */
+    background-size: 0% 100%; 
+    background-position: 0 0;
+    
+    /* Important perquè el background-size funcioni bé */
+    display: inline-block; 
+}
+
+.text-block p {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    margin-bottom: 20px;
+    color: #555;
+}
+
+/* =========================================
+   6. FOOTER
+   ========================================= */
+footer {
+    position: relative;
+    z-index: 2;
+    background: var(--color-fosc);
+    color: #888;
+    text-align: center;
+    padding: 40px;
+}
+
+/* =========================================
+   7. MODAL DE VÍDEO (POP-UP)
+   ========================================= */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.95); /* Fons molt fosc */
+    z-index: 9999;
+    
+    /* Centrar contingut */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    /* Estat inicial: Ocult */
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s ease;
+}
+
+/* Classe per mostrar-lo des de JS */
+.modal-overlay.active {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.modal-content {
+    position: relative;
+    width: 80%;
+    max-width: 900px;
+    aspect-ratio: 16/9; /* Manté proporció de vídeo */
+    background: black;
+    box-shadow: 0 0 50px rgba(255, 107, 0, 0.3);
+}
+
+.close-modal {
+    position: absolute;
+    top: -40px;
+    right: 0;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 2rem;
+    cursor: pointer; /* Aquest sí que hauria de tenir cursor pointer si no el personalitzat */
+}
+
+.close-modal:hover {
+    color: var(--color-primari);
+}

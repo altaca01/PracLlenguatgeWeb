@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hoquei Patins - Passió sobre Rodes</title>
+    <!-- Enllaç al CSS (que farem en el següent pas) -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- 1. CURSOR PERSONALITZAT -->
+    <!-- El JS mourà aquests divs per seguir el ratolí -->
+    <div class="cursor-dot" id="cursor-dot"></div>
+    <div class="cursor-circle" id="cursor-circle"></div>
+
+    <!-- 2. NAVEGACIÓ (SMART HEADER) -->
+    <header id="main-header">
+        <div class="logo">OK PATINS</div>
+        <nav>
+            <ul>
+                <li><a href="#home">Inici</a></li>
+                <li><a href="#intro">L'Esport</a></li>
+                <li><a href="#">Galeria</a></li>
+                <li><a href="#">Enllaços</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- 3. PORTADA FIXA (HERO SECTION) -->
+    <!-- Aquesta secció tindrà position: fixed al CSS perquè es quedi al fons -->
+    <section class="hero-fixed" id="home">
+        <div class="hero-content">
+            <!-- Títol buit: Aquí el JS farà l'efecte "Scrambler" -->
+            <h1 id="scramble-title"></h1>
+            
+            <!-- Subtítol opcional o efecte màquina d'escriure secundari -->
+            <p class="hero-subtitle">Més que un esport</p>
+
+            <!-- Botó per obrir el vídeo -->
+            <button id="btn-open-video" class="btn-cta">Veure Highlights</button>
+        </div>
+        
+        <!-- Indicador d'Scroll (fletxa o ratolí animat) -->
+        <div class="scroll-indicator">
+            <span>Scroll</span>
+            <div class="mouse-icon"></div>
+        </div>
+    </section>
+
+    <!-- 4. CONTINGUT QUE PUJA (INTRO) -->
+    <!-- Aquesta secció passarà per sobre de la portada (z-index superior) -->
+    <section id="intro" class="content-scroll">
+        <div class="intro-container">
+            <h2>Per què l'Hoquei Patins?</h2>
+            <div class="text-block">
+                <p>
+                    Explocivitat, habilitat i treball en equip es combinen en 50 minuts que poden marcar la diferència. 
+                    L'Hoquei Patins no només és un joc, és una forma de vida per a molts. 
+                </p>
+                <p>
+                     Amb cada partit, els jugadors aboquen tot el treball acumulat als entrenaments, oferint espectacle i emocionant als aficionats.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. PEU DE PÀGINA -->
+    <footer>
+        <p>&copy; 2025 - Pràctica Llenguatges Web - Àlex Tarazaga Carcaré</p>
+    </footer>
+
+    <!-- 6. MODAL DE VÍDEO (OCULT) -->
+    <!-- Està fora del flux principal per posar-se a sobre de tot -->
+    <div id="video-modal" class="modal-overlay">
+        <div class="modal-content">
+            <button class="close-modal" id="btn-close-video">✕</button>
+            <div class="video-container">
+                <!-- Iframe de YouTube (exemple) -->
+                <iframe 
+                    width="100%" 
+                    height="100%" 
+                    src="https://www.youtube.com/embed/dQw4w9WgXcQ?enablejsapi=1" 
+                    title="Video Hoquei" 
+                    frameborder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                    allowfullscreen>
+                </iframe>
+            </div>
+        </div>
+    </div>
+
+    <!-- Enllaç al Javascript (que farem després del CSS) -->
+    <script src="script.js"></script>
+
+</body>
+</html>
+
+<!-- 
+1. cursor personalitzat (rodona/punt buit)
+2. barra de progrés de lectura
+3. botó fosc/clar
+4. botó magnètic?
+5. comptador animat
+6. targetes 3D que s'inclinen amb el ratolí
+7. botó back to top o de navegació lateral amb punts o indicador d'escroll circular
+8. typewriter / efecte glitch
+9. smart header
+10. text scrambler (efecte desencriptat, amb varis títols)
+11. spotlight? 
+12. acordió regles bàsiques
+13. comparador exemple abans vs modern
+14. light box, es veu gran una imatge de la galeria
+15. miniSeccions: actualitat: velocitat i tècnica moderna - Expansió: catalunya esdevé potència mundial - Origens: neix a Anglaterra, finals del segle XIX
+16. text reveeal, una mascara que omple de color el text al fer scroll
+17. masonry grid, galeria estil pinterest, escala de grisos i al fer hover img amb color, tmb skew on scroll inclinació segons velocitat scroll
+
+
+
+
+secundari
+1. fons de partícules amb un canva
+2. pissarra tàctica, drag and drop de les fitxes
+3. cercador en temps real de jugadors
+4. radar chart stats, podria anar amb la busqueda de jugadors
+5. quiz interactiu amb preguntes
+6. tiker notícies, barra inferior amb notícies passant, estil telenotícies
+7. pisarra de dibuix
+8. video modal, al clicar s'obra una directa del dario-->
