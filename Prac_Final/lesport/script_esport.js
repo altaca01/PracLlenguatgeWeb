@@ -5,7 +5,7 @@ const cursorCircle = document.getElementById("cursor-circle");
 const cursorDot = document.getElementById("cursor-dot");
 const header = document.getElementById("main-header");
 const dynamicBg = document.getElementById("dynamic-bg"); 
-const sectionTitle = document.querySelector(".section-title"); // Seleccionem el títol "NORMATIVA CLAU"
+const sectionTitle = document.getElementById("scramble-title"); // Seleccionem el títol pel ID
 
 /* =========================================
    1. CURSOR PERSONALITZAT
@@ -219,44 +219,12 @@ class TextScramble {
     }
 }
 
-// Activem l'efecte quan el títol entra a la pantalla
+// Activem l'efecte AUTOMÀTICAMENT quan carrega la pàgina
 if (sectionTitle) {
     const fx = new TextScramble(sectionTitle);
-    let hasScrambled = false; // Perquè només ho faci una vegada
-
-    window.addEventListener("scroll", () => {
-        const rect = sectionTitle.getBoundingClientRect();
-        const windowHeight = window.innerHeight;
-        
-        // Si l'element és visible i encara no hem fet l'efecte
-        if (rect.top < windowHeight * 0.8 && !hasScrambled) {
-            hasScrambled = true;
-            // Fem l'efecte Scramble per revelar el text "NORMATIVA CLAU"
-            fx.setText("NORMATIVA CLAU");
-            
-            // Opcional: Si vols mantenir també l'efecte de color reveal, el pots deixar
-            // Però normalment l'scramble ja crida prou l'atenció.
-            // Si vols els dos, el codi de sota (color reveal) també funcionarà.
-        }
-    });
-}
-
-/* =========================================
-   5. TEXT REVEAL EFFECT (COLOR - OPCIONAL)
-   ========================================= */
-// Mantinc aquest codi per si vols que A MÉS A MÉS s'ompli de color al fer scroll
-if (sectionTitle) {
-    window.addEventListener("scroll", () => {
-        const rect = sectionTitle.getBoundingClientRect();
-        const windowHeight = window.innerHeight;
-        
-        const startPoint = windowHeight * 0.8;
-        const endPoint = windowHeight * 0.4;
-        
-        let progress = (startPoint - rect.top) / (startPoint - endPoint);
-        progress = Math.min(Math.max(progress, 0), 1);
-        const percentage = progress * 100;
-        
-        sectionTitle.style.backgroundSize = `${percentage}% 100%`;
-    });
+    
+    // Esperem 500ms perquè la pàgina estigui a punt i llavors executem l'efecte
+    setTimeout(() => {
+        fx.setText("NORMATIVA CLAU");
+    }, 500);
 }
