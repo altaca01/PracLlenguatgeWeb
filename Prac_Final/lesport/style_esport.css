@@ -1,5 +1,5 @@
 /* =========================================
-   1. VARIABLES I RESET BÀSIC
+   1. VARIABLES I RESET (BASE)
    ========================================= */
 :root {
     --color-primari: #ff6b00; /* Taronja Hoquei */
@@ -10,28 +10,63 @@
     
     --font-titols: 'Arial Black', sans-serif;
     --font-cos: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    --font-esport: 'Teko', sans-serif;
 }
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    cursor: none; /* AMAGUEM EL RATOLÍ DE WINDOWS PER FER SERVIR EL NOSTRE */
+    cursor: none; /* Amaguem ratolí natiu */
 }
 
 body {
     font-family: var(--font-cos);
-    background-color: var(--color-fosc); /* Fons fosc per defecte */
-    color: var(--color-text);
-    overflow-x: hidden; /* Evitem scroll lateral */
+    background-color: var(--color-fosc);
+    color: white;
+    overflow-x: hidden;
+    padding-top: 100px; /* Espai per no quedar tapat pel header */
+    position: relative; /* Necessari per al background absolut */
+    min-height: 100vh;
 }
 
-a, button {
-    cursor: none; /* Assegurem que cap element mostri el punter natiu */
+a, button { cursor: none; }
+
+/* =========================================
+   2. FONS DINÀMIC (TOTAL PAGE)
+   ========================================= */
+#dynamic-bg {
+    position: absolute; 
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%; /* Ocupa tota l'alçada del document */
+    z-index: 0; /* Al fons, però per sobre del body background */
+    pointer-events: none;
+    overflow: hidden;
+    /* Fons fosc base */
+    background: radial-gradient(circle at center, #1a1a1a 0%, #000 100%);
+}
+
+/* Les línies SVG que crea el JS */
+.play-line-svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Contingut per sobre del fons */
+.relative-content {
+    position: relative;
+    z-index: 1;
 }
 
 /* =========================================
-   2. CURSOR PERSONALITZAT
+   3. CURSOR PERSONALITZAT
    ========================================= */
 .cursor-dot {
     position: fixed;
@@ -40,7 +75,7 @@ a, button {
     background-color: var(--color-primari);
     border-radius: 50%;
     pointer-events: none;
-    z-index: 10001; /* Per sobre del cercle */
+    z-index: 10001;
     transform: translate(-50%, -50%);
 }
 
@@ -59,12 +94,12 @@ a, button {
 .cursor-circle.hovered {
     width: 60px;
     height: 60px;
-    background-color: rgba(255, 107, 0, 0.2); /* Taronja transparent */
+    background-color: rgba(255, 107, 0, 0.2);
     border-color: transparent;
 }
 
 /* =========================================
-   3. NAVEGACIÓ (HEADER)
+   4. HEADER
    ========================================= */
 header {
     position: fixed;
@@ -74,29 +109,21 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    z-index: 1000; /* Per sobre de tot */
+    z-index: 1000;
     transition: 0.3s;
-    mix-blend-mode: difference; /* Truc pro: es veu bé sobre fons clar i fosc */
+    mix-blend-mode: difference;
     color: white;
 }
 
 header.scrolled {
     background: rgba(0, 0, 0, 0.9);
     padding: 10px 50px;
-    mix-blend-mode: normal; /* Tornem a mode normal quan té fons */
+    mix-blend-mode: normal;
 }
 
-.logo {
-    font-size: 1.5rem;
-    font-weight: bold;
-    letter-spacing: 2px;
-}
+.logo { font-size: 1.5rem; font-weight: bold; letter-spacing: 2px; }
 
-nav ul {
-    display: flex;
-    list-style: none;
-    gap: 30px;
-}
+nav ul { display: flex; list-style: none; gap: 30px; }
 
 nav a {
     text-decoration: none;
@@ -118,211 +145,161 @@ nav a::after {
     transition: 0.3s;
 }
 
-nav a:hover::after {
-    width: 100%;
+nav a:hover::after, nav a.active::after { width: 100%; }
+
+/* =========================================
+   5. SECCIÓ I GRID
+   ========================================= */
+.section-dark {
+    padding: 40px 20px 80px 20px;
+    background-color: transparent; /* Transparent per veure el fons */
+    position: relative;
+    z-index: 1;
+}
+
+.container { max-width: 1200px; margin: 0 auto; }
+
+/* MODIFICAT: Estil del títol preparat per a SCRAMBLE */
+.section-title {
+    font-family: var(--font-esport);
+    font-size: 3.5rem;
+    color: #ffffff; /* IMPORTANT: Blanc sòlid, no transparent */
+    margin-bottom: 60px;
+    text-transform: uppercase;
+    text-align: center;
+    text-shadow: 0 4px 10px rgba(0,0,0,0.5); /* Ombra suau */
+    
+    /* Assegurem espai vertical */
+    min-height: 1.2em; 
+    display: block;
+}
+
+.rules-grid-container {
+    display: grid;
+    grid-template-columns: 1fr 250px 1fr;
+    gap: 20px;
+    position: relative;
+    padding: 40px 0;
 }
 
 /* =========================================
-   4. PORTADA FIXA (HERO SECTION)
+   6. FRANJA CENTRAL
    ========================================= */
-.hero-fixed {
-    /* LA CLAU DE L'EFECTE: ES QUEDA AL FONS */
-    position: fixed; 
-    top: 0;
-    left: 0;
+.center-media-strip {
+    grid-column: 2;
+    grid-row: 1 / span 10;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    align-items: center;
+    position: relative;
+    margin-top: 20px;
+}
+
+.media-item {
     width: 100%;
-    height: 100vh;
-    z-index: 1; /* Capa inferior */
-    
-    /* Imatge de fons */
-    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1580748141549-71748dbe0bdc?q=80&w=2000&auto=format&fit=crop');
+    height: 150px;
+    background-color: #333;
     background-size: cover;
     background-position: center;
-    
+    display: block;
+    pointer-events: none;
+}
+
+.video-placeholder {
     display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    padding-top: 25vh;
     align-items: center;
-    text-align: center;
-    color: white;
-}
-
-.hero-content h1 {
-    font-family: var(--font-titols);
-    font-size: 5rem;
-    text-transform: uppercase;
-    margin-bottom: 20px;
-    min-height: 1.2em; /* Reserva espai perquè no salti */
-    
-    /* MODIFICAT: Només text blanc per a l'scramble, sense efectes de màscara */
-    color: #ffffff;
-    text-shadow: 0 4px 10px rgba(0,0,0,0.5);
-    /* Eliminat el text-stroke i els gradients que feien l'efecte reveal */
-}
-
-.hero-subtitle {
-    font-size: 1.5rem;
-    letter-spacing: 5px;
-    margin-bottom: 40px;
-    opacity: 0.8;
-}
-
-/* Botó Principal */
-.btn-cta {
-    padding: 15px 40px;
-    font-size: 1rem;
-    font-weight: bold;
-    text-transform: uppercase;
-    color: white;
-    background: var(--color-primari);
-    border: none;
-    border-radius: 50px;
-    transition: 0.3s;
-    letter-spacing: 1px;
-}
-
-.btn-cta:hover {
-    background: white;
-    color: var(--color-primari);
-    transform: scale(1.05);
-}
-
-/* Indicador Scroll */
-.scroll-indicator {
-    position: absolute;
-    bottom: 30px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    opacity: 0.7;
-    animation: bounce 2s infinite;
-}
-
-.mouse-icon {
-    width: 30px;
-    height: 50px;
-    border: 2px solid white;
-    border-radius: 20px;
-    margin-top: 10px;
-    position: relative;
-}
-
-.mouse-icon::before {
-    content: '';
-    position: absolute;
-    top: 10px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 4px;
-    height: 8px;
-    background: white;
-    border-radius: 2px;
-}
-
-@keyframes bounce {
-    0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
-    40% {transform: translateY(-10px);}
-    60% {transform: translateY(-5px);}
-}
-
-/* =========================================
-   5. CONTINGUT QUE PUJA (INTRO)
-   ========================================= */
-.content-scroll {
-    margin-top: 100vh; /* Deixa veure la portada sencera abans de pujar */
-    position: relative;
-    z-index: 2; /* Per sobre de la portada */
-    background-color: var(--color-clar); 
-    min-height: 100vh;
-    display: flex;
     justify-content: center;
-    align-items: center;
-    padding: 100px 20px;
-    box-shadow: 0 -10px 30px rgba(0,0,0,0.5); 
-}
-
-.intro-container {
-    max-width: 800px;
-    text-align: center;
-}
-
-/* Títol de la secció d'intro */
-.intro-container h2 {
-    font-family: var(--font-titols);
-    font-size: 4rem; 
-    margin-bottom: 30px;
-    color: var(--color-fosc); /* Color normal */
-}
-
-.text-block p {
-    font-size: 1.2rem;
-    line-height: 1.8;
-    margin-bottom: 20px;
-    color: #555;
+    color: var(--color-primari);
+    font-weight: bold;
+    border: 1px solid var(--color-primari);
+    background-color: #000;
 }
 
 /* =========================================
-   6. FOOTER
+   7. BOLES I ZIG-ZAG
    ========================================= */
-footer {
+.rule-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 60px;
+    height: 200px;
+}
+
+.rule-row.left { grid-column: 1; justify-content: flex-end; padding-right: 40px; }
+.rule-row.right { grid-column: 3; justify-content: flex-start; padding-left: 40px; margin-top: 100px; }
+
+.rule-ball {
+    width: 140px;
+    height: 140px;
+    background-color: var(--color-primari);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #fff;
+    cursor: pointer;
+    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     position: relative;
-    z-index: 2;
-    background: var(--color-fosc);
-    color: #888;
+    overflow: hidden;
+    box-shadow: 0 0 30px rgba(255, 107, 0, 0.3);
+    border: 4px solid transparent;
+}
+
+.ball-content { width: 90%; }
+
+.ball-content h3 {
+    font-family: var(--font-esport);
+    font-size: 1.8rem;
+    margin: 0;
+    line-height: 1;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    transition: transform 0.3s;
+}
+
+.rule-details {
+    max-height: 0;
+    opacity: 0;
+    margin-top: 0;
+    font-size: 0.95rem;
+    line-height: 1.4;
+    transition: all 0.4s ease;
+}
+
+.rule-details p { margin: 5px 0; border-bottom: 1px solid rgba(255,255,255,0.2); padding-bottom: 3px; }
+
+/* HOVER ESTAT */
+.rule-ball:hover {
+    width: 320px;
+    height: auto;
+    min-height: 180px;
+    border-radius: 20px;
+    background-color: #d15600;
+    border-color: #fff;
+    z-index: 10;
+    transform: scale(1.1);
+}
+
+.rule-ball:hover .ball-content { padding: 20px; width: 100%; }
+.rule-ball:hover h3 { transform: scale(1.1); margin-bottom: 15px; border-bottom: 2px solid #fff; display: inline-block; }
+.rule-ball:hover .rule-details { max-height: 300px; opacity: 1; margin-top: 10px; }
+
+/* Footer */
+footer {
     text-align: center;
     padding: 40px;
-}
-
-/* =========================================
-   7. MODAL DE VÍDEO (POP-UP)
-   ========================================= */
-.modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.95); /* Fons molt fosc */
-    z-index: 9999;
-    
-    /* Centrar contingut */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    
-    /* Estat inicial: Ocult */
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.5s ease;
-}
-
-/* Classe per mostrar-lo des de JS */
-.modal-overlay.active {
-    opacity: 1;
-    pointer-events: all;
-}
-
-.modal-content {
+    background-color: #000;
+    color: #666;
+    font-size: 0.9rem;
     position: relative;
-    width: 80%;
-    max-width: 900px;
-    aspect-ratio: 16/9; /* Manté proporció de vídeo */
-    background: black;
-    box-shadow: 0 0 50px rgba(255, 107, 0, 0.3);
+    z-index: 2;
 }
 
-.close-modal {
-    position: absolute;
-    top: -40px;
-    right: 0;
-    background: none;
-    border: none;
-    color: white;
-    font-size: 2rem;
-    cursor: pointer; 
-}
-
-.close-modal:hover {
-    color: var(--color-primari);
+/* Mòbil */
+@media (max-width: 900px) {
+    .rules-grid-container { grid-template-columns: 1fr; }
+    .center-media-strip { display: none; }
+    .rule-row { justify-content: center !important; padding: 0 !important; margin-bottom: 40px; }
+    .rule-row.right { margin-top: 0; }
 }
