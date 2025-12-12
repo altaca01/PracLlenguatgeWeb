@@ -1,155 +1,157 @@
 <!DOCTYPE html>
+<!-- Definim el tipus de document i l'idioma de la pàgina -->
 <html lang="ca">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Títol de la pestanya del navegador -->
     <title>Hoquei Patins - Normativa</title>
-    <!-- Fonts -->
-    <link
-      href="https://fonts.googleapis.com/css2?family=Teko:wght@300;500;700&family=Arial+Black&display=swap"
-      rel="stylesheet"
-    />
-    <!-- Enllaç al CSS específic d'aquesta pàgina -->
-    <link rel="stylesheet" href="style_esport.css" />
-  </head>
-  <body>
-    <div class="dynamic-background" id="dynamic-bg"></div>
-    <!-- 1. CURSOR PERSONALITZAT -->
+    
+    <!-- Enllaç a Google Fonts per carregar les tipografies personalitzades -->
+    <link href="https://fonts.googleapis.com/css2?family=Teko:wght@300;500;700&family=Arial+Black&display=swap" rel="stylesheet">
+    
+    <!-- Enllaç al nostre full d'estils (CSS) que conté tot el disseny -->
+    <link rel="stylesheet" href="style_esport.css">
+</head>
+<body>
+
+    <!-- 1. FONS DINÀMIC (Fixe al darrere) -->
+    <!-- Aquest element és on el JavaScript dibuixarà les línies corbes animades -->
+    <div id="dynamic-bg"></div>
+
+    <!-- 2. CURSOR PERSONALITZAT -->
+    <!-- Element div per al punt petit que segueix el ratolí -->
     <div class="cursor-dot" id="cursor-dot"></div>
+    <!-- Element div per al cercle gran que segueix el ratolí amb retard -->
     <div class="cursor-circle" id="cursor-circle"></div>
 
-    <!-- 2. NAVEGACIÓ (Header idèntic a l'inici) -->
+    <!-- 3. NAVEGACIÓ (Header idèntic a l'inici) -->
     <header id="main-header">
-      <div class="logo">OK PATINS</div>
-      <nav>
-        <ul>
-          <!-- Enllaç per tornar a la pàgina principal -->
-          <li><a href="../main/inici.html">Inici</a></li>
-          <li><a href="lesport.html" class="active">L'Esport</a></li>
-          <li><a href="#">Galeria</a></li>
-          <li><a href="#">Enllaços</a></li>
-        </ul>
-      </nav>
+        <!-- Logotip de la pàgina -->
+        <div class="logo">OK PATINS</div>
+        <nav>
+            <ul>
+                <!-- Enllaç per tornar a la pàgina principal -->
+                <li><a href="../inici/inici.html">Inici</a></li>
+                <!-- Pàgina actual marcada com a 'active' per destacar-la -->
+                <li><a href="../lesport/lesport.html" class="active">L'Esport</a></li>
+                <li><a href="../galeria/galeria.html">Galeria</a></li>
+                <li><a href="../enllaços/enllaços.html">Enllaços</a></li>
+            </ul>
+        </nav>
     </header>
-
-    <!-- 3. REGLAMENT ZIG-ZAG -->
+        
+    <!-- 4. CONTINGUT PRINCIPAL (ZIG-ZAG) -->
+    <!-- Secció amb fons fosc (definit al CSS) -->
     <section class="section-dark" id="regles">
-        <div class="container">
-          <h2 class="section-title">NORMATIVA CLAU</h2>
-
-          <div class="rules-grid-container">
-            <!-- FRANJA CENTRAL D'IMATGES -->
-            <div class="center-media-strip">
-              <div
-                class="media-item"
-                style="
-                  background-image: url('https://images.unsplash.com/photo-1541252260730-0412e8e2108e?q=80&w=400&auto=format&fit=crop');
-                "
-              ></div>
-              <div
-                class="media-item"
-                style="
-                  background-image: url('https://images.unsplash.com/photo-1521412644187-c49fa049e84d?q=80&w=400&auto=format&fit=crop');
-                "
-              ></div>
-              <div
-                class="media-item"
-                style="
-                  background-image: url('https://images.unsplash.com/photo-1628779238951-be2c9f256544?q=80&w=400&auto=format&fit=crop');
-                "
-              ></div>
-              <div
-                class="media-item"
-                style="
-                  background-image: url('https://images.unsplash.com/photo-1532509854226-a2d9d8e66f8e?q=80&w=400&auto=format&fit=crop');
-                "
-              ></div>
-              <div
-                class="media-item"
-                style="
-                  background-image: url('https://images.unsplash.com/photo-1580748141549-71748dbe0bdc?q=80&w=400&auto=format&fit=crop');
-                "
-              ></div>
-            </div>
-
-            <!-- BOLA 1 (Esquerra) -->
-            <div class="rule-row left">
-              <div class="rule-ball">
-                <div class="ball-content">
-                  <h3>PENALTI</h3>
-                  <div class="rule-details">
-                    <p>Falta comesa dins de l'àrea.</p>
-                    <p>Tir directe des de 5,4 metres.</p>
-                    <p>El porter no es pot moure.</p>
-                  </div>
+        <!-- 'relative-content' assegura que aquest contingut estigui per sobre del fons dinàmic -->
+        <div class="container relative-content">
+            
+            <!-- Títol de la secció amb l'efecte de text reveal -->
+            <h2 class="section-title">NORMATIVA CLAU</h2>
+            
+            <!-- Contenidor principal de la graella (grid) -->
+            <div class="rules-grid-container">
+                
+                <!-- FRANJA CENTRAL D'IMATGES (Columna del mig) -->
+                <div class="center-media-strip">
+                    <!-- Imatges decoratives (placeholders) que es mostren com una tira -->
+                    <div class="media-item" style="background-image: url('https://images.unsplash.com/photo-1541252260730-0412e8e2108e?q=80&w=400&auto=format&fit=crop');"></div>
+                    <div class="media-item" style="background-image: url('https://images.unsplash.com/photo-1521412644187-c49fa049e84d?q=80&w=400&auto=format&fit=crop');"></div>
+                    
+                    <!-- Bloc de vídeo simulat (no funcional, només visual) -->
+                    <div class="media-item video-placeholder">
+                        <span>▶ PLAY ACTION</span>
+                    </div>
+                    
+                    <div class="media-item" style="background-image: url('https://images.unsplash.com/photo-1628779238951-be2c9f256544?q=80&w=400&auto=format&fit=crop');"></div>
+                    <div class="media-item" style="background-image: url('https://images.unsplash.com/photo-1532509854226-a2d9d8e66f8e?q=80&w=400&auto=format&fit=crop');"></div>
                 </div>
-              </div>
-            </div>
 
-            <!-- BOLA 2 (Dreta) -->
-            <div class="rule-row right">
-              <div class="rule-ball">
-                <div class="ball-content">
-                  <h3>FALTA DIRECTA</h3>
-                  <div class="rule-details">
-                    <p>10 faltes d'equip o targeta blava.</p>
-                    <p>1 vs 1 contra el porter.</p>
-                    <p>5 segons per xutar o regatejar.</p>
-                  </div>
+                <!-- BOLA 1 (Alineada a l'Esquerra) -->
+                <div class="rule-row left">
+                    <!-- Element interactiu que s'expandeix en passar el ratolí -->
+                    <div class="rule-ball">
+                        <div class="ball-content">
+                            <h3>PENALTI</h3>
+                            <!-- Detalls de la regla, inicialment ocults -->
+                            <div class="rule-details">
+                                <p>Falta comesa dins de l'àrea.</p>
+                                <p>Tir directe des de 5,4 metres.</p>
+                                <p>El porter no es pot moure.</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-              </div>
-            </div>
 
-            <!-- BOLA 3 (Esquerra) -->
-            <div class="rule-row left">
-              <div class="rule-ball">
-                <div class="ball-content">
-                  <h3>TARGETA BLAVA</h3>
-                  <div class="rule-details">
-                    <p>Expulsió temporal (2 min).</p>
-                    <p>L'equip juga amb un menys (Power Play).</p>
-                    <p>Si marquen gol, el jugador torna.</p>
-                  </div>
+                <!-- BOLA 2 (Alineada a la Dreta) -->
+                <div class="rule-row right">
+                    <div class="rule-ball">
+                        <div class="ball-content">
+                            <h3>FALTA DIRECTA</h3>
+                            <div class="rule-details">
+                                <p>Targeta blava/vermella o 10 faltes.</p>
+                                <p>1 contra 1 amb el porter des de lluny.</p>
+                                <p>Màxima tensió del partit.</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-              </div>
-            </div>
 
-            <!-- BOLA 4 (Dreta) -->
-            <div class="rule-row right">
-              <div class="rule-ball">
-                <div class="ball-content">
-                  <h3>TARGETA VERMELLA</h3>
-                  <div class="rule-details">
-                    <p>Expulsió definitiva del partit.</p>
-                    <p>Acció molt greu o antiesportiva.</p>
-                    <p>L'equip juga amb un menys durant 4 min.</p>
-                  </div>
+                <!-- BOLA 3 (Alineada a l'Esquerra) -->
+                <div class="rule-row left">
+                    <div class="rule-ball">
+                        <div class="ball-content">
+                            <h3>TARGETA BLAVA</h3>
+                            <div class="rule-details">
+                                <p>Expulsió temporal de 2 minuts.</p>
+                                <p>L'equip juga amb un menys (Power Play).</p>
+                                <p>Retorn si reben gol.</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-              </div>
-            </div>
 
-            <!-- BOLA 5 (Esquerra) -->
-            <div class="rule-row left">
-              <div class="rule-ball">
-                <div class="ball-content">
-                  <h3>PEU (KICK)</h3>
-                  <div class="rule-details">
-                    <p>Prohibit tocar bola amb el patí intencionadament.</p>
-                    <p>Si talla una passada, és falta.</p>
-                    <p>El porter sí que pot usar els peus.</p>
-                  </div>
+                <!-- BOLA 4 (Alineada a la Dreta) -->
+                <div class="rule-row right">
+                    <div class="rule-ball">
+                        <div class="ball-content">
+                            <h3>TARGETA VERMELLA</h3>
+                            <div class="rule-details">
+                                <p>Expulsió definitiva del partit.</p>
+                                <p>Falta molt greu.</p>
+                                <p>L'equip juga amb un menys 4 minuts.</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-              </div>
+
+                 <!-- BOLA 5 (Alineada a l'Esquerra) -->
+                 <div class="rule-row left">
+                    <div class="rule-ball">
+                        <div class="ball-content">
+                            <h3>PEU (KICK)</h3>
+                            <div class="rule-details">
+                                <p>Prohibit tocar bola amb el patí.</p>
+                                <p>Si talla passada o tir, és falta.</p>
+                                <p>El porter sí que pot usar-los.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
-          </div>
         </div>
     </section>
 
+    <!-- 5. PEU DE PÀGINA -->
     <footer>
-      <p>&copy; 2025 - Hoquei Experience</p>
+        <p>&copy; 2025 - Hoquei Experience</p>
     </footer>
 
-    <!-- Script específic per aquesta pàgina -->
+    <!-- Enllaç al Javascript específic per aquesta pàgina -->
+    <!-- Conté la lògica del cursor, el fons dinàmic i el text reveal -->
     <script src="script_esport.js"></script>
-  </body>
+
+</body>
 </html>
