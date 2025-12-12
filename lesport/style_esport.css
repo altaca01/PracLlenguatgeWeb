@@ -68,16 +68,6 @@ a, button { cursor: none; }
 /* =========================================
    3. CURSOR PERSONALITZAT
    ========================================= */
-.cursor-dot {
-    position: fixed;
-    top: 0; left: 0;
-    width: 8px; height: 8px;
-    background-color: var(--color-primari);
-    border-radius: 50%;
-    pointer-events: none;
-    z-index: 10001;
-    transform: translate(-50%, -50%);
-}
 
 .cursor-circle {
     position: fixed;
