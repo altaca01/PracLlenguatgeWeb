@@ -1,7 +1,7 @@
 :root {
     --color-primari: #ff6b00;
     --color-fosc: #111111;
-
+    
     --font-titols: 'Arial Black', sans-serif;
     --font-cos: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     --font-esport: 'Teko', sans-serif;
@@ -28,6 +28,17 @@ a, button { cursor: none; }
         cursor propi
    ========================================= */
 
+.cursor-dot {
+    position: fixed;
+    top: 0; left: 0;
+    width: 8px; height: 8px;
+    background-color: var(--color-primari);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 10001;
+    transform: translate(-50%, -50%);
+}
+
 .cursor-circle {
     position: fixed;
     top: 0; left: 0;
@@ -48,7 +59,7 @@ a, button { cursor: none; }
 }
 
 /* =========================================
-        header pr navegació
+        header navegació
    ========================================= */
 header {
     position: fixed;
@@ -97,22 +108,23 @@ nav a::after {
 nav a:hover::after, nav a.active::after { width: 100%; }
 
 /* =========================================
-        galeria
+        enllaços
    ========================================= */
-.gallery-section {
+.links-section {
     padding: 40px 20px 80px;
+    min-height: 80vh;
 }
 
 .container {
-    max-width: 1200px;
+    max-width: 800px;
     margin: 0 auto;
 }
 
-.gallery-title {
+.page-title {
     font-family: var(--font-esport);
     font-size: 4rem;
     text-align: center;
-    margin-bottom: 50px;
+    margin-bottom: 60px;
     color: white;
     text-shadow: 0 4px 10px rgba(0,0,0,0.5);
     letter-spacing: 2px;
@@ -120,44 +132,64 @@ nav a:hover::after, nav a.active::after { width: 100%; }
     display: block;
 }
 
-
-.masonry-grid {
-    column-count: 3;
-    column-gap: 20px; 
+.links-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
 
 
-.gallery-item {
+.link-box {
+    display: block;
+    background-color: #1a1a1a;
+    border: 1px solid #333;
+    padding: 30px;
+    text-align: center;
+    text-decoration: none;
+    color: white;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     position: relative;
-    margin-bottom: 20px;
-    break-inside: avoid; 
-    border-radius: 15px;
     overflow: hidden;
-    cursor: pointer;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-    transition: transform 0.3s ease;
-}
-
-.gallery-item img {
-    width: 100%;
-    display: block; 
-    height: auto;
-    transition: transform 0.5s ease;
 }
 
 
-.gallery-item.tall img { height: 400px; object-fit: cover; }
-.gallery-item.large img { height: 300px; object-fit: cover; }
-
-
-.gallery-item:hover {
-    transform: translateY(-5px); 
-    z-index: 2;
-    box-shadow: 0 10px 25px rgba(255, 107, 0, 0.3);
+.link-box h3 {
+    font-family: var(--font-esport);
+    font-size: 2rem;
+    margin: 0;
+    color: white;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
 }
 
-.gallery-item:hover img {
-    transform: scale(1.1); 
+
+.link-box::before {
+    content: '';
+    position: absolute;
+    top: 0; 
+    left: 0;
+    width: 0%; 
+    height: 100%;
+    background: var(--color-primari);
+    opacity: 0.1;
+    transition: width 0.4s ease;
+    z-index: 0;
+}
+
+
+.link-box:hover {
+    border-color: var(--color-primari);
+    transform: scale(1.02); 
+    box-shadow: 0 0 20px rgba(255, 107, 0, 0.2);
+}
+
+.link-box:hover::before {
+    width: 100%; 
+}
+
+.link-box:hover h3 {
+    letter-spacing: 3px; 
+    color: var(--color-primari);
 }
 
 
@@ -167,65 +199,5 @@ footer {
     background-color: #000;
     color: #666;
     font-size: 0.9rem;
-}
-
-
-@media (max-width: 900px) {
-    .masonry-grid { column-count: 2; }
-}
-
-@media (max-width: 600px) {
-    .masonry-grid { column-count: 1; }
-}
-
-/* =========================================
-        img gran al clicar
-   ========================================= */
-.lightbox {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.95);
-    z-index: 10000;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    opacity: 0;
-    pointer-events: none; 
-    transition: opacity 0.3s ease;
-}
-
-.lightbox.active {
-    opacity: 1;
-    pointer-events: all;
-}
-
-.lightbox-content {
-    max-width: 90%;
-    max-height: 90vh;
-    border: 3px solid var(--color-primari);
-    border-radius: 10px;
-    box-shadow: 0 0 50px rgba(255, 107, 0, 0.5); 
-    transform: scale(0.8);
-    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-
-.lightbox.active .lightbox-content {
-    transform: scale(1);
-}
-
-.lightbox-close {
-    position: absolute;
-    top: 20px;
-    right: 30px;
-    font-size: 3rem;
-    color: white;
-    cursor: pointer;
-    transition: color 0.3s;
-}
-
-.lightbox-close:hover {
-    color: var(--color-primari);
+    margin-top: 50px;
 }

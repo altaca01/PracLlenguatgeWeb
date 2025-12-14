@@ -4,17 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hoquei Patins - Passió sobre Rodes</title>
-    <!-- Enllaç al CSS (que farem en el següent pas) -->
     <link rel="stylesheet" href="main/style.css">
 </head>
 <body>
 
-    <!-- 1. CURSOR PERSONALITZAT -->
-    <!-- El JS mourà aquests divs per seguir el ratolí -->
-    <div class="cursor-dot" id="cursor-dot"></div>
+    <!-- cursor rodó -->
     <div class="cursor-circle" id="cursor-circle"></div>
 
-    <!-- 2. NAVEGACIÓ (SMART HEADER) -->
     <header id="main-header">
         <div class="logo">OK PATINS</div>
         <nav>
@@ -22,34 +18,33 @@
                 <li><a href="index.html">Inici</a></li>
                 <li><a href="lesport.html">L'Esport</a></li>
                 <li><a href="galeria.html">Galeria</a></li>
-                <li><a href="#">Enllaços</a></li>
+                <li><a href="links.htm">Enllaços</a></li>
             </ul>
         </nav>
     </header>
 
-    <!-- 3. PORTADA FIXA (HERO SECTION) -->
-    <!-- Aquesta secció tindrà position: fixed al CSS perquè es quedi al fons -->
+
+    <!-- imatge fons -->
     <section class="hero-fixed" id="home">
         <div class="hero-content">
-            <!-- Títol buit: Aquí el JS farà l'efecte "Scrambler" -->
+            <!-- titol per a que aparegui amb js -->
             <h1 id="scramble-title"></h1>
             
-            <!-- Subtítol opcional o efecte màquina d'escriure secundari -->
+            
             <p class="hero-subtitle">Més que un esport</p>
 
-            <!-- Botó per obrir el vídeo -->
+            <!-- posaré un video q montaré amb jugades d'hoquei -->
             <button id="btn-open-video" class="btn-cta">Veure Highlights</button>
         </div>
         
-        <!-- Indicador d'Scroll (fletxa o ratolí animat) -->
+        <!-- icona per dirli al usuari que pot fer scroll cap aball -->
         <div class="scroll-indicator">
             <span>Scroll</span>
             <div class="mouse-icon"></div>
         </div>
     </section>
 
-    <!-- 4. CONTINGUT QUE PUJA (INTRO) -->
-    <!-- Aquesta secció passarà per sobre de la portada (z-index superior) -->
+    <!-- contingut q puja i tapa la imatge -->
     <section id="intro" class="content-scroll">
         <div class="intro-container">
             <h2>Per què l'Hoquei Patins?</h2>
@@ -65,22 +60,21 @@
         </div>
     </section>
 
-    <!-- 5. PEU DE PÀGINA -->
+
     <footer>
         <p>&copy; 2025 - Pràctica Llenguatges Web - Àlex Tarazaga Carcaré</p>
     </footer>
 
-    <!-- 6. MODAL DE VÍDEO (OCULT) -->
-    <!-- Està fora del flux principal per posar-se a sobre de tot -->
+
+    <!-- video que es mostrarà al clicar botó -->
     <div id="video-modal" class="modal-overlay">
         <div class="modal-content">
             <button class="close-modal" id="btn-close-video">✕</button>
             <div class="video-container">
-                <!-- Iframe de YouTube (exemple) -->
                 <iframe 
                     width="100%" 
                     height="100%" 
-                    src="https://www.youtube.com/embed/dQw4w9WgXcQ?enablejsapi=1" 
+                    src="#" 
                     title="Video Hoquei" 
                     frameborder="0" 
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
@@ -90,13 +84,21 @@
         </div>
     </div>
 
-    <!-- Enllaç al Javascript (que farem després del CSS) -->
+
     <script src="main/script.js"></script>
 
 </body>
 </html>
 
+
+
+
+
 <!-- 
+
+IDEES QUE M'AGRADEN PER AFEGIR A LA PAGINA AMB JS 
+
+
 1. cursor personalitzat (rodona/punt buit)
 2. barra de progrés de lectura
 3. botó fosc/clar
