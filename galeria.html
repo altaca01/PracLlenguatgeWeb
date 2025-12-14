@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hoquei Patins - Galeria</title>
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Teko:wght@300;500;700&family=Arial+Black&display=swap" rel="stylesheet">
+    <!-- CSS Específic per a la galeria -->
+    <link rel="stylesheet" href="galeria/style_galeria.css">
+</head>
+<body>
+
+    <!-- 1. CURSOR PERSONALITZAT -->
+    <div class="cursor-dot" id="cursor-dot"></div>
+    <div class="cursor-circle" id="cursor-circle"></div>
+
+    <!-- 2. NAVEGACIÓ (HEADER) -->
+    <header id="main-header">
+        <div class="logo">OK PATINS</div>
+        <nav>
+            <ul>
+                <!-- Ajusta les rutes si tens carpetes -->
+                <li><a href="inici.html">Inici</a></li>
+                <li><a href="lesport.html">L'Esport</a></li>
+                <li><a href="galeria.html" class="active">Galeria</a></li>
+                <li><a href="#">Enllaços</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- 3. CONTINGUT DE LA GALERIA -->
+    <section class="gallery-section">
+        <div class="container">
+            <!-- Títol amb efecte scramble -->
+            <h1 class="gallery-title" id="scramble-title"></h1>
+            
+            <!-- Graella Estil Masonry -->
+            <div class="masonry-grid">
+                
+                <!-- Imatge 1 -->
+                <div class="gallery-item large">
+                    <img src="https://images.unsplash.com/photo-1580748141549-71748dbe0bdc?q=80&w=800&auto=format&fit=crop" alt="Jugador Hoquei">
+                </div>
+
+                <!-- Imatge 2 -->
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1541252260730-0412e8e2108e?q=80&w=800&auto=format&fit=crop" alt="Stick">
+                </div>
+
+                <!-- Imatge 3 -->
+                <div class="gallery-item tall">
+                    <img src="https://images.unsplash.com/photo-1628779238951-be2c9f256544?q=80&w=800&auto=format&fit=crop" alt="Equip">
+                </div>
+
+                <!-- Imatge 4 -->
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1532509854226-a2d9d8e66f8e?q=80&w=800&auto=format&fit=crop" alt="Porter">
+                </div>
+
+                <!-- Imatge 5 -->
+                <div class="gallery-item large">
+                    <img src="https://images.unsplash.com/photo-1521412644187-c49fa049e84d?q=80&w=800&auto=format&fit=crop" alt="Pista">
+                </div>
+
+                <!-- Imatge 6 -->
+                <div class="gallery-item tall">
+                    <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=800&auto=format&fit=crop" alt="Detall">
+                </div>
+
+                <!-- Imatge 7 -->
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1579952363873-27f3bade9f55?q=80&w=800&auto=format&fit=crop" alt="Gol">
+                </div>
+
+                 <!-- Imatge 8 -->
+                 <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1517466787929-bc90951d0974?q=80&w=800&auto=format&fit=crop" alt="Celebració">
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. PEU DE PÀGINA -->
+    <footer>
+        <p>&copy; 2025 - Hoquei Experience</p>
+    </footer>
+
+    <!-- Script de la galeria -->
+    <script src="galeria/script_galeria.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,249 @@
+/* =========================================
+   1. VARIABLES I RESET (COPIAT DE L'ESTIL BASE)
+   ========================================= */
+:root {
+    --color-primari: #ff6b00; /* Taronja */
+    --color-secundari: #0044cc; /* Blau */
+    --color-fosc: #111111;
+    --color-clar: #f4f4f4;
+    --color-text: #333333;
+    
+    --font-titols: 'Arial Black', sans-serif;
+    --font-cos: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    --font-esport: 'Teko', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    cursor: none; /* Amaguem ratolí natiu */
+}
+
+body {
+    font-family: var(--font-cos);
+    background-color: var(--color-fosc);
+    color: white;
+    overflow-x: hidden;
+    padding-top: 100px;
+}
+
+a, button { cursor: none; }
+
+/* =========================================
+   2. CURSOR PERSONALITZAT
+   ========================================= */
+.cursor-dot {
+    position: fixed;
+    top: 0; left: 0;
+    width: 8px; height: 8px;
+    background-color: var(--color-primari);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 10001;
+    transform: translate(-50%, -50%);
+}
+
+.cursor-circle {
+    position: fixed;
+    top: 0; left: 0;
+    width: 20px; height: 20px;
+    border: 2px solid var(--color-primari);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 10000;
+    transform: translate(-50%, -50%);
+    transition: width 0.3s, height 0.3s, background-color 0.3s;
+}
+
+.cursor-circle.hovered {
+    width: 60px;
+    height: 60px;
+    background-color: rgba(255, 107, 0, 0.2);
+    border-color: transparent;
+}
+
+/* =========================================
+   3. HEADER
+   ========================================= */
+header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding: 20px 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000;
+    transition: 0.3s;
+    mix-blend-mode: difference;
+    color: white;
+}
+
+header.scrolled {
+    background: rgba(0, 0, 0, 0.9);
+    padding: 10px 50px;
+    mix-blend-mode: normal;
+}
+
+.logo { font-size: 1.5rem; font-weight: bold; letter-spacing: 2px; }
+
+nav ul { display: flex; list-style: none; gap: 30px; }
+
+nav a {
+    text-decoration: none;
+    color: white;
+    font-weight: 500;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    position: relative;
+}
+
+nav a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    background: var(--color-primari);
+    bottom: -5px;
+    left: 0;
+    transition: 0.3s;
+}
+
+nav a:hover::after, nav a.active::after { width: 100%; }
+
+/* =========================================
+   4. ESTILS GALERIA (MASONRY)
+   ========================================= */
+.gallery-section {
+    padding: 40px 20px 80px;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.gallery-title {
+    font-family: var(--font-esport);
+    font-size: 4rem;
+    text-align: center;
+    margin-bottom: 50px;
+    color: white;
+    text-shadow: 0 4px 10px rgba(0,0,0,0.5);
+    letter-spacing: 2px;
+    /* Afegit per l'scramble */
+    min-height: 1.2em; 
+    display: block;
+}
+
+/* La Graella Masonry */
+.masonry-grid {
+    column-count: 3; /* Número de columnes */
+    column-gap: 20px; /* Espai entre columnes */
+}
+
+/* Elements individuals */
+.gallery-item {
+    position: relative;
+    margin-bottom: 20px; /* Espai vertical */
+    break-inside: avoid; /* Evita que una imatge es talli entre columnes */
+    border-radius: 15px;
+    overflow: hidden;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    transition: transform 0.3s ease;
+}
+
+.gallery-item img {
+    width: 100%;
+    display: block; /* Elimina espais blancs sota la imatge */
+    height: auto;
+    transition: transform 0.5s ease;
+}
+
+/* Estils opcionals per forçar alçades diferents */
+.gallery-item.tall img { height: 400px; object-fit: cover; }
+.gallery-item.large img { height: 300px; object-fit: cover; }
+
+/* --- EFECTES HOVER (MODIFICAT: NOMÉS ZOOM) --- */
+.gallery-item:hover {
+    transform: translateY(-5px); /* Puja una mica */
+    z-index: 2;
+    /* Afegim un borde taronja subtil al fer hover per indicar click */
+    box-shadow: 0 10px 25px rgba(255, 107, 0, 0.3);
+}
+
+.gallery-item:hover img {
+    transform: scale(1.1); /* Zoom a la imatge */
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 40px;
+    background-color: #000;
+    color: #666;
+    font-size: 0.9rem;
+}
+
+/* Responsive per a mòbils */
+@media (max-width: 900px) {
+    .masonry-grid { column-count: 2; }
+}
+
+@media (max-width: 600px) {
+    .masonry-grid { column-count: 1; }
+}
+
+/* =========================================
+   5. LIGHTBOX (VISUALITZADOR IMATGE GRAN)
+   ========================================= */
+.lightbox {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.95); /* Fons molt fosc */
+    z-index: 10000; /* Per sobre de tot */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    pointer-events: none; /* No clicable quan està amagat */
+    transition: opacity 0.3s ease;
+}
+
+.lightbox.active {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.lightbox-content {
+    max-width: 90%;
+    max-height: 90vh;
+    border: 3px solid var(--color-primari); /* Vora Taronja */
+    border-radius: 10px;
+    box-shadow: 0 0 50px rgba(255, 107, 0, 0.5); /* Ombra Taronja */
+    transform: scale(0.8);
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.lightbox.active .lightbox-content {
+    transform: scale(1);
+}
+
+.lightbox-close {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    font-size: 3rem;
+    color: white;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.lightbox-close:hover {
+    color: var(--color-primari);
+}
