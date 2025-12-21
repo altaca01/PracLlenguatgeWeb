@@ -56,8 +56,6 @@ a, button {
     z-index: 10000;
 }
 
-
-
 /* El cercle exterior */
 .cursor-circle {
     width: 20px;
@@ -349,4 +347,3 @@ footer {
 .close-modal:hover {
     color: var(--color-primari);
 }
-

@@ -2,6 +2,7 @@
    ELEMENTS DEL DOM (VARIABLES)
    ========================================= */
 const cursorCircle = document.getElementById("cursor-circle");
+const cursorDot = document.getElementById("cursor-dot"); // NOU: Afegit
 const header = document.getElementById("main-header");
 const scrambleTitle = document.getElementById("scramble-title");
 const btnOpenVideo = document.getElementById("btn-open-video");
@@ -14,11 +15,6 @@ const heroContent = document.querySelector(".hero-content");
 // Element de l'indicador d'scroll
 const scrollIndicator = document.querySelector(".scroll-indicator");
 
-// ELEMENTS DE LA PERSIANA (MENÚ)
-const menuBtn = document.querySelector('.menu-btn');
-const menuOverlay = document.getElementById('menu-overlay');
-const closeMenuBtn = document.getElementById('close-menu-btn');
-
 
 /* =========================================
    1. CURSOR PERSONALITZAT
@@ -27,11 +23,19 @@ if (cursorCircle) {
     document.addEventListener("mousemove", (e) => {
         const mouseX = e.clientX;
         const mouseY = e.clientY;
+        
+        // Movem el cercle
         cursorCircle.style.left = `${mouseX}px`;
         cursorCircle.style.top = `${mouseY}px`;
+
+        // NOU: Movem el punt (si existeix)
+        if (cursorDot) {
+            cursorDot.style.left = `${mouseX}px`;
+            cursorDot.style.top = `${mouseY}px`;
+        }
     });
 
-    const interactiveElements = document.querySelectorAll("a, button, .menu-btn, .close-btn");
+    const interactiveElements = document.querySelectorAll("a, button, .close-btn");
     interactiveElements.forEach(el => {
         el.addEventListener("mouseenter", () => {
             cursorCircle.classList.add("hovered"); 
@@ -194,19 +198,25 @@ window.addEventListener("scroll", () => {
 });
 
 /* =========================================
-   4. MODAL VÍDEO
+   4. MODAL VÍDEO (ARREGLAT)
    ========================================= */
 if (videoModal && btnOpenVideo) {
     const originalSrc = videoIframe ? videoIframe.src : ""; 
 
     btnOpenVideo.addEventListener("click", () => {
         videoModal.classList.add("active");
-        if (videoIframe) videoIframe.src = originalSrc + "&autoplay=1"; 
+        
+        if (videoIframe && originalSrc) {
+            // Comprovem si l'enllaç ja té paràmetres '?' o no
+            const symbol = originalSrc.includes('?') ? '&' : '?';
+            videoIframe.src = originalSrc + symbol + "autoplay=1"; 
+        }
     });
 
     function closeModal() {
         videoModal.classList.remove("active");
         if (videoIframe) {
+            // Buidem per parar el so immediatament i restaurem l'original
             videoIframe.src = "";
             videoIframe.src = originalSrc;
         }
@@ -230,36 +240,7 @@ if (heroContent) {
 }
 
 /* =========================================
-   6. GESTIÓ DE LA PERSIANA (MENÚ)
-   ========================================= */
-if (menuBtn && menuOverlay) {
-    
-    // Funció per obrir la persiana
-    menuBtn.addEventListener('click', () => {
-        // Obrim la persiana canviant el transform
-        menuOverlay.style.transform = "translateY(0)";
-        
-        // PINTAR EL H2 DE BLANC AMB JAVASCRIPT
-        // Busquem el h2 dins de la persiana i li canviem l'estil inline
-        const persianaH2 = menuOverlay.querySelector('h2');
-        if (persianaH2) {
-            persianaH2.style.color = "#ffffff";
-            persianaH2.style.textShadow = "0 0 10px rgba(255,255,255,0.3)"; // Opcional: una mica de 'glow'
-        }
-    });
-
-    // Funció per tancar la persiana
-    function closeMenu() {
-        menuOverlay.style.transform = "translateY(-100%)";
-    }
-
-    if (closeMenuBtn) {
-        closeMenuBtn.addEventListener('click', closeMenu);
-    }
-}
-
-/* =========================================
-   7. TEXT REVEAL EFFECT (MÀSCARA SCROLL)
+   6. TEXT REVEAL EFFECT (MÀSCARA SCROLL)
    ========================================= */
 // Seleccionem el h2 de la secció d'intro
 const introTitle = document.querySelector("#intro h2");

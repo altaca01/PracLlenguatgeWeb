@@ -8,7 +8,7 @@
 </head>
 <body>
 
-    <!-- cursor rodó -->
+    <div class="cursor-dot" id="cursor-dot"></div>
     <div class="cursor-circle" id="cursor-circle"></div>
 
     <header id="main-header">
@@ -23,34 +23,27 @@
         </nav>
     </header>
 
-
-    <!-- imatge fons -->
     <section class="hero-fixed" id="home">
         <div class="hero-content">
-            <!-- titol per a que aparegui amb js -->
             <h1 id="scramble-title"></h1>
-            
             
             <p class="hero-subtitle">Més que un esport</p>
 
-            <!-- posaré un video q montaré amb jugades d'hoquei -->
             <button id="btn-open-video" class="btn-cta">Veure Highlights</button>
         </div>
         
-        <!-- icona per dirli al usuari que pot fer scroll cap aball -->
         <div class="scroll-indicator">
             <span>Scroll</span>
             <div class="mouse-icon"></div>
         </div>
     </section>
 
-    <!-- contingut q puja i tapa la imatge -->
     <section id="intro" class="content-scroll">
         <div class="intro-container">
             <h2>Per què l'Hoquei Patins?</h2>
             <div class="text-block">
                 <p>
-                    Explocivitat, habilitat i treball en equip es combinen en 50 minuts que poden marcar la diferència. 
+                    Explosivitat, habilitat i treball en equip es combinen en 50 minuts que poden marcar la diferència. 
                     L'Hoquei Patins no només és un joc, és una forma de vida per a molts. 
                 </p>
                 <p>
@@ -60,13 +53,10 @@
         </div>
     </section>
 
-
     <footer>
         <p>&copy; 2025 - Pràctica Llenguatges Web - Àlex Tarazaga Carcaré</p>
     </footer>
 
-
-    <!-- video que es mostrarà al clicar botó -->
     <div id="video-modal" class="modal-overlay">
         <div class="modal-content">
             <button class="close-modal" id="btn-close-video">✕</button>
@@ -74,7 +64,7 @@
                 <iframe 
                     width="100%" 
                     height="100%" 
-                    src="#" 
+                    src="https://www.youtube.com/embed/5a4s31p6QEQ" 
                     title="Video Hoquei" 
                     frameborder="0" 
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
@@ -84,14 +74,10 @@
         </div>
     </div>
 
-
     <script src="main/script.js"></script>
 
 </body>
 </html>
-
-
-
 
 
 <!-- 

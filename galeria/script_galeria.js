@@ -3,13 +3,13 @@
    ========================================= */
 const cursorCircle = document.getElementById("cursor-circle");
 const cursorDot = document.getElementById("cursor-dot");
-const header = document.getElementById("main-header");
-const galleryTitle = document.getElementById("scramble-title"); // Títol de la galeria
+// const header = document.getElementById("main-header"); // Ja no el necessitem al JS
+const galleryTitle = document.getElementById("scramble-title");
 
 /* =========================================
    1. CURSOR PERSONALITZAT
    ========================================= */
-if (cursorCircle && cursorDot) {
+if (cursorCircle) {
     document.addEventListener("mousemove", (e) => {
         const mouseX = e.clientX;
         const mouseY = e.clientY;
@@ -17,99 +17,115 @@ if (cursorCircle && cursorDot) {
         cursorCircle.style.left = `${mouseX}px`;
         cursorCircle.style.top = `${mouseY}px`;
         
-        cursorDot.style.left = `${mouseX}px`;
-        cursorDot.style.top = `${mouseY}px`;
-    });
-
-    // Afegim elements interactius: enllaços, imatges de la galeria i botons de tancar
-    const interactiveElements = document.querySelectorAll("a, .gallery-item, .lightbox-close");
-    
-    interactiveElements.forEach(el => {
-        el.addEventListener("mouseenter", () => {
-            cursorCircle.classList.add("hovered"); 
-        });
-        el.addEventListener("mouseleave", () => {
-            cursorCircle.classList.remove("hovered"); 
-        });
-    });
-}
-
-/* =========================================
-   2. HEADER SCROLL EFFECT
-   ========================================= */
-if (header) {
-    window.addEventListener("scroll", () => {
-        if (window.scrollY > 50) {
-            header.classList.add("scrolled");
-        } else {
-            header.classList.remove("scrolled");
+        if (cursorDot) {
+            cursorDot.style.left = `${mouseX}px`;
+            cursorDot.style.top = `${mouseY}px`;
         }
     });
+
+    const interactiveElements = document.querySelectorAll("a, .gallery-item");
+    interactiveElements.forEach(el => {
+        el.addEventListener("mouseenter", () => cursorCircle.classList.add("hovered"));
+        el.addEventListener("mouseleave", () => cursorCircle.classList.remove("hovered"));
+    });
 }
 
 /* =========================================
-   3. LIGHTBOX (VISUALITZADOR D'IMATGES)
+   2. LIGHTBOX (VISUALITZADOR D'IMATGES)
    ========================================= */
-// 1. Creem l'HTML del lightbox dinàmicament i l'afegim al body
+// 1. Preparem la llista d'imatges i l'índex
+let currentIndex = 0;
+const galleryItems = document.querySelectorAll('.gallery-item img');
+const imagesList = []; 
+
+galleryItems.forEach((img, index) => {
+    imagesList.push(img.getAttribute('src'));
+    img.setAttribute('data-index', index);
+});
+
+// 2. Creem l'HTML del lightbox
 const lightbox = document.createElement('div');
 lightbox.className = 'lightbox';
 lightbox.innerHTML = `
     <div class="lightbox-close">&times;</div>
+    <button class="lightbox-prev">&#10094;</button>
+    <button class="lightbox-next">&#10095;</button>
     <img src="" alt="Zoom Image" class="lightbox-content">
 `;
 document.body.appendChild(lightbox);
 
-// Seleccionem els elements interns del lightbox un cop creats
 const lightboxImg = lightbox.querySelector('.lightbox-content');
 const lightboxClose = lightbox.querySelector('.lightbox-close');
+const btnPrev = lightbox.querySelector('.lightbox-prev');
+const btnNext = lightbox.querySelector('.lightbox-next');
 
-// 2. Afegim l'esdeveniment click a cada imatge de la galeria
-const galleryItems = document.querySelectorAll('.gallery-item');
+// 3. Funció per mostrar la imatge segons l'índex actual
+const showImage = (index) => {
+    if (index < 0) index = imagesList.length - 1; 
+    if (index >= imagesList.length) index = 0;    
+    
+    currentIndex = index;
+    lightboxImg.setAttribute('src', imagesList[currentIndex]);
+};
 
-galleryItems.forEach(item => {
+// 4. Obrir Lightbox
+const items = document.querySelectorAll('.gallery-item');
+items.forEach(item => {
     item.addEventListener('click', () => {
         const img = item.querySelector('img');
         if (img) {
-            // Obtenim la font de la imatge clicada
-            const src = img.getAttribute('src');
-            // La posem dins del visualitzador gran
-            lightboxImg.setAttribute('src', src);
-            // Mostrem el lightbox afegint la classe activa
+            const index = parseInt(img.getAttribute('data-index'));
+            showImage(index);
             lightbox.classList.add('active');
         }
     });
 });
 
-// 3. Funcions per tancar el lightbox
+// 5. Botons
+btnPrev.addEventListener('click', (e) => {
+    e.stopPropagation();
+    showImage(currentIndex - 1);
+});
+
+btnNext.addEventListener('click', (e) => {
+    e.stopPropagation();
+    showImage(currentIndex + 1);
+});
+
+// 6. Teclat
+document.addEventListener('keydown', (e) => {
+    if (!lightbox.classList.contains('active')) return;
+
+    if (e.key === 'ArrowLeft') showImage(currentIndex - 1);
+    if (e.key === 'ArrowRight') showImage(currentIndex + 1);
+    if (e.key === 'Escape') closeLightbox();
+});
+
+// 7. Tancar
 const closeLightbox = () => {
     lightbox.classList.remove('active');
-    // Netejem la font després de l'animació (300ms) per evitar parpellejos
     setTimeout(() => {
         lightboxImg.setAttribute('src', '');
     }, 300);
 };
 
-// Tancar amb la X
-if (lightboxClose) {
-    lightboxClose.addEventListener('click', closeLightbox);
+if (lightboxClose) lightboxClose.addEventListener('click', closeLightbox);
+lightbox.addEventListener('click', (e) => {
+    if (e.target === lightbox) closeLightbox();
+});
+
+
+// 8. Integració Cursor
+if (cursorCircle) {
+    const controls = [lightboxClose, btnPrev, btnNext];
+    controls.forEach(el => {
+        el.addEventListener("mouseenter", () => cursorCircle.classList.add("hovered"));
+        el.addEventListener("mouseleave", () => cursorCircle.classList.remove("hovered"));
+    });
 }
 
-// Tancar clicant al fons fosc (fora de la imatge)
-lightbox.addEventListener('click', (e) => {
-    if (e.target === lightbox) {
-        closeLightbox();
-    }
-});
-
-// Tancar amb la tecla ESC
-document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && lightbox.classList.contains('active')) {
-        closeLightbox();
-    }
-});
-
 /* =========================================
-   4. SCRAMBLE TEXT EFFECT (TÍTOL)
+   3. SCRAMBLE TEXT EFFECT
    ========================================= */
 class TextScramble {
     constructor(el) {
@@ -168,18 +184,17 @@ class TextScramble {
     }
 }
 
-// Activem l'efecte cada vegada que el títol entra a la pantalla
 if (galleryTitle) {
     const fx = new TextScramble(galleryTitle);
     
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
-            // Si l'element és visible (intersecta amb la finestra)
             if (entry.isIntersecting) {
                 fx.setText("MOMENTS SOBRE RODES");
+                observer.unobserve(entry.target); 
             }
         });
-    }, { threshold: 0.5 }); // S'activa quan el 50% de l'element és visible
+    }, { threshold: 0.5 });
 
     observer.observe(galleryTitle);
 }
