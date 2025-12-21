@@ -28,7 +28,19 @@ a, button { cursor: none; }
         cursor propi
    ========================================= */
 
-.cursor-circle {
+.cursor-dot {
+    position: fixed;
+    top: 0; left: 0;
+    width: 8px; height: 8px;
+    background-color: var(--color-primari);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 10001;
+    transform: translate(-50%, -50%);
+}
+
+
+   .cursor-circle {
     position: fixed;
     top: 0; left: 0;
     width: 20px; height: 20px;
