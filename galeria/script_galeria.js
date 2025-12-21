@@ -4,13 +4,12 @@
 const cursorCircle = document.getElementById("cursor-circle");
 const cursorDot = document.getElementById("cursor-dot");
 const header = document.getElementById("main-header");
-const galleryTitle = document.getElementById("scramble-title"); // Seleccionem el títol pel ID
+const galleryTitle = document.getElementById("scramble-title"); // Títol de la galeria
 
 /* =========================================
    1. CURSOR PERSONALITZAT
    ========================================= */
 if (cursorCircle && cursorDot) {
-    // Moviment del cursor
     document.addEventListener("mousemove", (e) => {
         const mouseX = e.clientX;
         const mouseY = e.clientY;
@@ -22,8 +21,7 @@ if (cursorCircle && cursorDot) {
         cursorDot.style.top = `${mouseY}px`;
     });
 
-    // Elements interactius: Enllaços i IMATGES DE LA GALERIA
-    // Afegim '.gallery-item' i '.lightbox-close' perquè el cursor reaccioni
+    // Afegim elements interactius: enllaços, imatges de la galeria i botons de tancar
     const interactiveElements = document.querySelectorAll("a, .gallery-item, .lightbox-close");
     
     interactiveElements.forEach(el => {
@@ -52,7 +50,7 @@ if (header) {
 /* =========================================
    3. LIGHTBOX (VISUALITZADOR D'IMATGES)
    ========================================= */
-// 1. Creem l'HTML del lightbox dinàmicament
+// 1. Creem l'HTML del lightbox dinàmicament i l'afegim al body
 const lightbox = document.createElement('div');
 lightbox.className = 'lightbox';
 lightbox.innerHTML = `
@@ -61,39 +59,42 @@ lightbox.innerHTML = `
 `;
 document.body.appendChild(lightbox);
 
+// Seleccionem els elements interns del lightbox un cop creats
 const lightboxImg = lightbox.querySelector('.lightbox-content');
 const lightboxClose = lightbox.querySelector('.lightbox-close');
 
-// 2. Funció per obrir la imatge
+// 2. Afegim l'esdeveniment click a cada imatge de la galeria
 const galleryItems = document.querySelectorAll('.gallery-item');
 
 galleryItems.forEach(item => {
     item.addEventListener('click', () => {
         const img = item.querySelector('img');
         if (img) {
-            // Agafem la font de la imatge clicada
+            // Obtenim la font de la imatge clicada
             const src = img.getAttribute('src');
-            // La posem al lightbox
+            // La posem dins del visualitzador gran
             lightboxImg.setAttribute('src', src);
-            // Mostrem el lightbox
+            // Mostrem el lightbox afegint la classe activa
             lightbox.classList.add('active');
         }
     });
 });
 
-// 3. Funcions per tancar
+// 3. Funcions per tancar el lightbox
 const closeLightbox = () => {
     lightbox.classList.remove('active');
-    // Netejem la font després de l'animació per evitar parpellejos si es reobre ràpid
+    // Netejem la font després de l'animació (300ms) per evitar parpellejos
     setTimeout(() => {
         lightboxImg.setAttribute('src', '');
     }, 300);
 };
 
 // Tancar amb la X
-lightboxClose.addEventListener('click', closeLightbox);
+if (lightboxClose) {
+    lightboxClose.addEventListener('click', closeLightbox);
+}
 
-// Tancar clicant fora de la imatge (al fons fosc)
+// Tancar clicant al fons fosc (fora de la imatge)
 lightbox.addEventListener('click', (e) => {
     if (e.target === lightbox) {
         closeLightbox();
@@ -108,7 +109,7 @@ document.addEventListener('keydown', (e) => {
 });
 
 /* =========================================
-   4. SCRAMBLE TEXT EFFECT (MOMENTS SOBRE RODES)
+   4. SCRAMBLE TEXT EFFECT (TÍTOL)
    ========================================= */
 class TextScramble {
     constructor(el) {
@@ -167,20 +168,15 @@ class TextScramble {
     }
 }
 
-// Activem l'efecte AMB UN OBSERVADOR (INTERSECTION OBSERVER)
-// Això fa que es torni a executar cada cop que es veu el títol
+// Activem l'efecte cada vegada que el títol entra a la pantalla
 if (galleryTitle) {
     const fx = new TextScramble(galleryTitle);
     
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
-            // Si l'element és visible (entra a la pantalla)
+            // Si l'element és visible (intersecta amb la finestra)
             if (entry.isIntersecting) {
-                fx.setText("EL MILLOR DE L'HOQUEI");
-            } else {
-                // Opcional: Si vols que es buidi quan surts de pantalla
-                // per fer l'efecte més dramàtic al tornar:
-                // galleryTitle.innerText = "";
+                fx.setText("MOMENTS SOBRE RODES");
             }
         });
     }, { threshold: 0.5 }); // S'activa quan el 50% de l'element és visible
