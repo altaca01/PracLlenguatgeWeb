@@ -3,13 +3,13 @@
    ========================================= */
 const cursorCircle = document.getElementById("cursor-circle");
 const cursorDot = document.getElementById("cursor-dot");
-const header = document.getElementById("main-header");
+// const header = document.getElementById("main-header"); // Eliminat
 const pageTitle = document.getElementById("scramble-title"); 
 
 /* =========================================
    1. CURSOR PERSONALITZAT
    ========================================= */
-if (cursorCircle && cursorDot) {
+if (cursorCircle) {
     document.addEventListener("mousemove", (e) => {
         const mouseX = e.clientX;
         const mouseY = e.clientY;
@@ -17,11 +17,13 @@ if (cursorCircle && cursorDot) {
         cursorCircle.style.left = `${mouseX}px`;
         cursorCircle.style.top = `${mouseY}px`;
         
-        cursorDot.style.left = `${mouseX}px`;
-        cursorDot.style.top = `${mouseY}px`;
+        if (cursorDot) {
+            cursorDot.style.left = `${mouseX}px`;
+            cursorDot.style.top = `${mouseY}px`;
+        }
     });
 
-    // Afegim '.link-box' perquè el cursor reaccioni a les noves caixes
+    // Afegim '.link-box' perquè el cursor reaccioni
     const interactiveElements = document.querySelectorAll("a, .link-box");
     
     interactiveElements.forEach(el => {
@@ -35,20 +37,7 @@ if (cursorCircle && cursorDot) {
 }
 
 /* =========================================
-   2. HEADER SCROLL EFFECT
-   ========================================= */
-if (header) {
-    window.addEventListener("scroll", () => {
-        if (window.scrollY > 50) {
-            header.classList.add("scrolled");
-        } else {
-            header.classList.remove("scrolled");
-        }
-    });
-}
-
-/* =========================================
-   3. SCRAMBLE TEXT EFFECT (ENLLAÇOS D'INTERÈS)
+   2. SCRAMBLE TEXT EFFECT (ENLLAÇOS D'INTERÈS)
    ========================================= */
 class TextScramble {
     constructor(el) {
