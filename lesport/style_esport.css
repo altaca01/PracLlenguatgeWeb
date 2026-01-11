@@ -26,9 +26,7 @@ body {
 
 a, button { cursor: none; }
 
-/* =========================================
-        FONS DINÀMIC (SVG)
-   ========================================= */
+/* fons */
 #dynamic-bg {
     position: absolute; 
     top: 0; left: 0;
@@ -52,9 +50,7 @@ a, button { cursor: none; }
     z-index: 1;
 }
 
-/* =========================================
-        CURSOR PERSONALITZAT
-   ========================================= */
+/* cursor propi */
 .cursor-dot {
     position: fixed;
     top: 0; left: 0;
@@ -84,9 +80,7 @@ a, button { cursor: none; }
     border-color: transparent;
 }
 
-/* =========================================
-        HEADER (SEMPRE VISIBLE)
-   ========================================= */
+/* header q es veu sempre */
 header {
     position: fixed;
     top: 0;
@@ -128,9 +122,7 @@ nav a::after {
 
 nav a:hover::after, nav a.active::after { width: 100%; }
 
-/* =========================================
-        CONTINGUT (BOLES I GRID)
-   ========================================= */
+/* grid de les boles */
 .section-dark {
     padding: 40px 20px 80px 20px;
     background-color: transparent;
@@ -160,8 +152,7 @@ nav a:hover::after, nav a.active::after { width: 100%; }
     padding: 40px 0;
 }
 
-/* Franja central imatges */
-/* Franja central imatges */
+/* franja  imatges */
 .center-media-strip {
     grid-column: 2;
     grid-row: 1 / span 10;
@@ -173,7 +164,7 @@ nav a:hover::after, nav a.active::after { width: 100%; }
     margin-top: 40px;
 }
 
-/* Línia vertical decorativa darrere les fotos */
+/* fil radere de les imatges */
 .center-media-strip::before {
     content: '';
     position: absolute;
@@ -189,8 +180,6 @@ nav a:hover::after, nav a.active::after { width: 100%; }
     width: 100%;
     height: 220px; 
     background-color: #1a1a1a; 
-    
-    /* Ajustem la imatge */
     background-size: cover; 
     background-position: center top; 
     background-repeat: no-repeat;
@@ -200,27 +189,22 @@ nav a:hover::after, nav a.active::after { width: 100%; }
     position: relative;
     z-index: 1; 
     
-    /* ESTÈTICA */
     border-radius: 12px;
-    border: 1px solid rgba(255, 107, 0, 0.3); /* Vora taronja subtil */
-    box-shadow: 0 10px 30px rgba(0,0,0,0.5); /* Ombra */
-    
-    /* CANVI: Eliminat el filtre blanc i negre. Ara es veu natural sempre. */
+    border: 1px solid rgba(255, 107, 0, 0.3); 
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
     filter: none; 
 }
 
-/* Capa taronja subtil per sobre (per cohesionar colors, però mantenint el color de la foto) */
 .media-item::after {
     content: '';
     position: absolute;
     top: 0; left: 0;
     width: 100%; height: 100%;
-    /* Un degradat molt suau per donar to taronja sense tapar la foto */
     background: linear-gradient(to bottom right, rgba(255, 107, 0, 0.1), rgba(0, 0, 0, 0.2));
     border-radius: 12px;
 }
 
-/* Boles Laterals */
+/* boles Laterals */
 .rule-row {
     display: flex;
     align-items: center;
@@ -231,7 +215,6 @@ nav a:hover::after, nav a.active::after { width: 100%; }
 .rule-row.left { grid-column: 1; justify-content: flex-end; padding-right: 40px; }
 .rule-row.right { grid-column: 3; justify-content: flex-start; padding-left: 40px; margin-top: 100px; }
 
-/* --- BOLES --- */
 
 .rule-ball {
     width: 150px; 
@@ -282,7 +265,6 @@ nav a:hover::after, nav a.active::after { width: 100%; }
     flex-shrink: 0; 
 }
 
-/* DETALLS: AMB SCROLL ACTIVAT */
 .rule-details {
     max-height: 0;
     opacity: 0;
@@ -290,28 +272,26 @@ nav a:hover::after, nav a.active::after { width: 100%; }
     font-size: 1rem;
     line-height: 1.5;
     
-    /* ACTIVAT: Si el text és llarg, farà scroll */
     overflow-y: auto; 
     overflow-x: hidden;
     
     transform: translateY(10px);
     transition: all 0.3s ease;
     width: 100%;
-    
-    /* Scrollbar estilitzada per Firefox */
+
     scrollbar-width: thin;
     scrollbar-color: rgba(255,255,255,0.5) transparent;
 }
 
-/* Scrollbar estilitzada per Chrome/Safari/Edge */
+/* barra d'escroll que no es la de per defecte */
 .rule-details::-webkit-scrollbar {
-    width: 4px; /* Molt fina */
+    width: 4px; 
 }
 .rule-details::-webkit-scrollbar-track {
     background: transparent; 
 }
 .rule-details::-webkit-scrollbar-thumb {
-    background-color: rgba(255, 255, 255, 0.5); /* Blanca semitransparent */
+    background-color: rgba(255, 255, 255, 0.5); 
     border-radius: 10px;
 }
 
@@ -326,10 +306,10 @@ nav a:hover::after, nav a.active::after { width: 100%; }
     margin-bottom: 0;
 }
 
-/* --- ESTAT HOVER --- */
+/* hover */
 .rule-ball:hover {
     width: 320px; 
-    height: 370px; /* Alçada fixa compacta */
+    height: 370px; 
     border-radius: 15px;
     background-color: #e65c00;
     border-color: #fff;

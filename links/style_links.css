@@ -1,7 +1,7 @@
 :root {
     --color-primari: #ff6b00;
     --color-fosc: #111111;
-    
+
     --font-titols: 'Arial Black', sans-serif;
     --font-cos: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     --font-esport: 'Teko', sans-serif;
@@ -23,20 +23,23 @@ body {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-    position: relative; 
+    position: relative;
 }
 
-a, button { cursor: none; }
+a,
+button {
+    cursor: none;
+}
 
-/* =========================================
-        FONS MOSAIC CAÒTIC
-   ========================================= */
+/* fons */
 #chaos-mosaic {
-    position: fixed; 
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    z-index: 0; 
-    pointer-events: none; 
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
     overflow: hidden;
 }
 
@@ -45,131 +48,230 @@ a, button { cursor: none; }
     background-size: cover;
     background-position: center;
     border-radius: 15px;
-    opacity: 0.15; 
-    filter: grayscale(30%); 
-    box-shadow: 0 0 40px rgba(0,0,0,0.8);
+    opacity: 0.15;
+    filter: grayscale(30%);
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.8);
     border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-/* --- POSICIONAMENT INDIVIDUAL --- */
-
-/* 1. IMATGE CENTRAL DALT (angelo) */
+/* img angelo girao */
 .mosaic-piece:nth-child(1) {
     top: 100px;
     left: 15%;
     transform: translateX(-50%);
-    /* Mida reduïda respecte a l'anterior versió, però encara dominant */
-    width: 300px;  
+    width: 300px;
     height: 250px;
     opacity: 0.12;
     z-index: -1;
 }
 
-/* 2. Mig Dreta (Liceo) */
+/* img Liceo */
 .mosaic-piece:nth-child(2) {
-    top: 25%; right: -120px;
-    width: 500px; height: 350px;
+    top: 25%;
+    right: -120px;
+    width: 500px;
+    height: 350px;
     transform: rotate(-10deg);
 }
 
-/* 3. Baix Esquerra (Vic) */
+/* img Vic */
 .mosaic-piece:nth-child(3) {
-    bottom: 50px; left: 10%;
-    width: 300px; height: 200px;
+    bottom: 50px;
+    left: 10%;
+    width: 300px;
+    height: 200px;
     transform: rotate(-5deg);
 }
 
-/* 4. Dalt Dreta (Caldes) */
+/* img Caldes */
 .mosaic-piece:nth-child(4) {
-    top: 10%; right: 10%;
-    width: 250px; height: 180px;
+    top: 10%;
+    right: 10%;
+    width: 250px;
+    height: 180px;
     transform: rotate(25deg);
 }
 
-/* 5. MIG ESQUERRA (NOIA) */
+/* img Noia Freixenet */
 .mosaic-piece:nth-child(5) {
-    top: 40%; 
-    left: -50px; /* Més a l'esquerra per compensar la mida */
-    /* Mida augmentada */
-    width: 350px; 
-    height:400px;
+    top: 40%;
+    left: -50px;
+    width: 350px;
+    height: 400px;
     transform: rotate(8deg);
 }
 
-/* 6. Baix Dreta (Porto) */
+/* img Porto */
 .mosaic-piece:nth-child(6) {
-    bottom: -50px; right: 50px;
-    width: 450px; height: 300px;
+    bottom: -50px;
+    right: 50px;
+    width: 450px;
+    height: 300px;
     transform: rotate(-12deg);
 }
 
 /* 7. Extra */
 .mosaic-piece:nth-child(7) {
-    top: 10%; left: 40%;
-    width: 300px; height: 200px;
+    top: 10%;
+    left: 40%;
+    width: 300px;
+    height: 200px;
     transform: rotate(10deg);
-    opacity: 0.05; 
+    opacity: 0.05;
 }
 
 
-/* =========================================
-        CURSOR / HEADER / ESTRUCTURA BASE
-   ========================================= */
-.cursor-dot { position: fixed; top: 0; left: 0; width: 8px; height: 8px; background-color: var(--color-primari); border-radius: 50%; pointer-events: none; z-index: 10001; transform: translate(-50%, -50%); }
-.cursor-circle { position: fixed; top: 0; left: 0; width: 20px; height: 20px; border: 2px solid var(--color-primari); border-radius: 50%; pointer-events: none; z-index: 10000; transform: translate(-50%, -50%); transition: width 0.3s, height 0.3s, background-color 0.3s; }
-.cursor-circle.hovered { width: 60px; height: 60px; background-color: rgba(255, 107, 0, 0.2); border-color: transparent; }
+/* cursor personalitzat */
+.cursor-dot {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 8px;
+    height: 8px;
+    background-color: var(--color-primari);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 10001;
+    transform: translate(-50%, -50%);
+}
 
-header { position: fixed; top: 0; width: 100%; padding: 15px 50px; display: flex; justify-content: space-between; align-items: center; z-index: 1000; background: rgba(0, 0, 0, 0.9); color: white; box-shadow: 0 2px 10px rgba(0,0,0,0.5); }
-.logo { font-size: 1.5rem; font-weight: bold; letter-spacing: 2px; }
-nav ul { display: flex; list-style: none; gap: 30px; }
-nav a { text-decoration: none; color: white; font-weight: 500; text-transform: uppercase; font-size: 0.9rem; position: relative; }
-nav a::after { content: ''; position: absolute; width: 0; height: 2px; background: var(--color-primari); bottom: -5px; left: 0; transition: 0.3s; }
-nav a:hover::after, nav a.active::after { width: 100%; }
+.cursor-circle {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--color-primari);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 10000;
+    transform: translate(-50%, -50%);
+    transition: width 0.3s, height 0.3s, background-color 0.3s;
+}
 
-.links-section { padding: 40px 20px 80px; flex: 1; position: relative; z-index: 1; }
-.container { max-width: 800px; margin: 0 auto; }
-.page-title { font-family: var(--font-esport); font-size: 4rem; text-align: center; margin-bottom: 60px; color: white; text-shadow: 0 4px 10px rgba(0,0,0,0.5); letter-spacing: 2px; min-height: 1.2em; display: block; }
-.links-list { display: flex; flex-direction: column; gap: 20px; }
+.cursor-circle.hovered {
+    width: 60px;
+    height: 60px;
+    background-color: rgba(255, 107, 0, 0.2);
+    border-color: transparent;
+}
+
+/* pagina */
+
+header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding: 15px 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000;
+    background: rgba(0, 0, 0, 0.9);
+    color: white;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+    gap: 30px;
+}
+
+nav a {
+    text-decoration: none;
+    color: white;
+    font-weight: 500;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    position: relative;
+}
+
+nav a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    background: var(--color-primari);
+    bottom: -5px;
+    left: 0;
+    transition: 0.3s;
+}
+
+nav a:hover::after,
+nav a.active::after {
+    width: 100%;
+}
+
+.links-section {
+    padding: 40px 20px 80px;
+    flex: 1;
+    position: relative;
+    z-index: 1;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.page-title {
+    font-family: var(--font-esport);
+    font-size: 4rem;
+    text-align: center;
+    margin-bottom: 60px;
+    color: white;
+    text-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    letter-spacing: 2px;
+    min-height: 1.2em;
+    display: block;
+}
+
+.links-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
 
 
-/* =========================================
-   NOU ESTIL DE CAIXA D'ENLLAÇ (BORDE EN MOVIMENT)
-   ========================================= */
+/* estil de caixa */
 
 .link-box {
     display: block;
     position: relative;
     text-decoration: none;
     color: white;
-    
-    /* Aquest padding defineix el grossor del borde lluminós */
-    padding: 2px; 
+
+    padding: 2px;
     border-radius: 8px;
-    
-    /* Fons inicial del borde (fosc o transparent) */
-    background: #333; 
-    
+
+    background: #333;
+
     overflow: hidden;
     transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
 }
 
-/* FONS INTERN FOSC (Tapa el centre per deixar només el borde) */
 .link-box::after {
     content: '';
     position: absolute;
-    /* L'inset ha de coincidir exactament amb el padding del pare */
-    inset: 2px; 
-    background-color: #1a1a1a; /* Color fons real de la targeta */
+    inset: 2px;
+    background-color: #1a1a1a;
     border-radius: 6px;
-    z-index: 0; /* Darrere del text */
+    z-index: 0;
 }
 
-/* CONTINGUT DEL TEXT */
-.link-box h3, .link-box p {
+/* contingut del text */
+.link-box h3,
+.link-box p {
     position: relative;
-    z-index: 1; /* Per sobre del fons intern */
-    /* Padding real pel text */
-    padding-left: 28px; 
+    z-index: 1;
+    padding-left: 28px;
     padding-right: 28px;
     transition: color 0.3s;
 }
@@ -187,33 +289,48 @@ nav a:hover::after, nav a.active::after { width: 100%; }
     margin-bottom: 28px;
 }
 
-/* --- INTERACCIÓ HOVER (LLUM EN MOVIMENT) --- */
+/* hover */
 .link-box:hover {
     transform: translateY(-5px);
     box-shadow: 0 0 25px rgba(255, 107, 0, 0.2);
-    
-    /* AQUI ESTÀ LA MÀGIA: Canviem el fons del pare per un gradient i l'animem */
-    background: linear-gradient(
-        60deg, 
-        var(--color-primari), 
-        transparent 30%, 
-        #ff9e42 50%, 
-        transparent 70%, 
-        var(--color-primari)
-    );
-    background-size: 300% 300%; /* Mida gran per poder moure'l */
-    animation: moveBorderLight 3s linear infinite; /* Animació de moviment */
+
+    background: linear-gradient(60deg,
+            var(--color-primari),
+            transparent 30%,
+            #ff9e42 50%,
+            transparent 70%,
+            var(--color-primari));
+    background-size: 300% 300%;
+    animation: moveBorderLight 3s linear infinite;
 }
 
-.link-box:hover h3 { color: #ff6b00; }
-.link-box:hover p { color: white; }
+.link-box:hover h3 {
+    color: #ff6b00;
+}
 
-/* Animació que mou el fons de gradient */
+.link-box:hover p {
+    color: white;
+}
+
+/* animar gradient */
 @keyframes moveBorderLight {
-    0% { background-position: 0% 50%; }
-    100% { background-position: 100% 50%; }
+    0% {
+        background-position: 0% 50%;
+    }
+
+    100% {
+        background-position: 100% 50%;
+    }
 }
+
 
 footer {
-    text-align: center; padding: 40px; background-color: #000; color: #666; font-size: 0.9rem; margin-top: auto; position: relative; z-index: 1;
+    text-align: center;
+    padding: 40px;
+    background-color: #000;
+    color: #666;
+    font-size: 0.9rem;
+    margin-top: auto;
+    position: relative;
+    z-index: 1;
 }

@@ -1,14 +1,8 @@
-/* =========================================
-   ELEMENTS DEL DOM
-   ========================================= */
 const cursorCircle = document.getElementById("cursor-circle");
 const cursorDot = document.getElementById("cursor-dot");
-// const header = document.getElementById("main-header"); // Ja no el necessitem al JS
 const galleryTitle = document.getElementById("scramble-title");
 
-/* =========================================
-   1. CURSOR PERSONALITZAT
-   ========================================= */
+/* cursor personalitzat */
 if (cursorCircle) {
     document.addEventListener("mousemove", (e) => {
         const mouseX = e.clientX;
@@ -30,10 +24,6 @@ if (cursorCircle) {
     });
 }
 
-/* =========================================
-   2. LIGHTBOX (VISUALITZADOR D'IMATGES)
-   ========================================= */
-// 1. Preparem la llista d'imatges i l'índex
 let currentIndex = 0;
 const galleryItems = document.querySelectorAll('.gallery-item img');
 const imagesList = []; 
@@ -43,7 +33,7 @@ galleryItems.forEach((img, index) => {
     img.setAttribute('data-index', index);
 });
 
-// 2. Creem l'HTML del lightbox
+// Crear l'HTML del lightbox
 const lightbox = document.createElement('div');
 lightbox.className = 'lightbox';
 lightbox.innerHTML = `
@@ -59,7 +49,7 @@ const lightboxClose = lightbox.querySelector('.lightbox-close');
 const btnPrev = lightbox.querySelector('.lightbox-prev');
 const btnNext = lightbox.querySelector('.lightbox-next');
 
-// 3. Funció per mostrar la imatge segons l'índex actual
+// mostrar img
 const showImage = (index) => {
     if (index < 0) index = imagesList.length - 1; 
     if (index >= imagesList.length) index = 0;    
@@ -68,7 +58,6 @@ const showImage = (index) => {
     lightboxImg.setAttribute('src', imagesList[currentIndex]);
 };
 
-// 4. Obrir Lightbox
 const items = document.querySelectorAll('.gallery-item');
 items.forEach(item => {
     item.addEventListener('click', () => {
@@ -81,7 +70,7 @@ items.forEach(item => {
     });
 });
 
-// 5. Botons
+// botons per moures entre imgs
 btnPrev.addEventListener('click', (e) => {
     e.stopPropagation();
     showImage(currentIndex - 1);
@@ -92,7 +81,7 @@ btnNext.addEventListener('click', (e) => {
     showImage(currentIndex + 1);
 });
 
-// 6. Teclat
+// noures entre imgs amb les fletxes del teclat
 document.addEventListener('keydown', (e) => {
     if (!lightbox.classList.contains('active')) return;
 
@@ -101,7 +90,7 @@ document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') closeLightbox();
 });
 
-// 7. Tancar
+// tancar
 const closeLightbox = () => {
     lightbox.classList.remove('active');
     setTimeout(() => {
@@ -115,7 +104,7 @@ lightbox.addEventListener('click', (e) => {
 });
 
 
-// 8. Integració Cursor
+
 if (cursorCircle) {
     const controls = [lightboxClose, btnPrev, btnNext];
     controls.forEach(el => {
@@ -124,9 +113,7 @@ if (cursorCircle) {
     });
 }
 
-/* =========================================
-   3. SCRAMBLE TEXT EFFECT
-   ========================================= */
+/* efecte scrambler del títol */
 class TextScramble {
     constructor(el) {
         this.el = el;

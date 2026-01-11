@@ -1,14 +1,8 @@
-/* =========================================
-   ELEMENTS DEL DOM
-   ========================================= */
 const cursorCircle = document.getElementById("cursor-circle");
 const cursorDot = document.getElementById("cursor-dot");
-// const header = document.getElementById("main-header"); // Eliminat
 const pageTitle = document.getElementById("scramble-title"); 
 
-/* =========================================
-   1. CURSOR PERSONALITZAT
-   ========================================= */
+/* cursor personalitzat */
 if (cursorCircle) {
     document.addEventListener("mousemove", (e) => {
         const mouseX = e.clientX;
@@ -23,7 +17,6 @@ if (cursorCircle) {
         }
     });
 
-    // Afegim '.link-box' perquè el cursor reaccioni
     const interactiveElements = document.querySelectorAll("a, .link-box");
     
     interactiveElements.forEach(el => {
@@ -36,9 +29,7 @@ if (cursorCircle) {
     });
 }
 
-/* =========================================
-   2. SCRAMBLE TEXT EFFECT (ENLLAÇOS D'INTERÈS)
-   ========================================= */
+/* text títol scramble */
 class TextScramble {
     constructor(el) {
         this.el = el;
@@ -96,7 +87,7 @@ class TextScramble {
     }
 }
 
-// Activem l'efecte quan la pàgina carrega
+// activvar al carregar
 if (pageTitle) {
     const fx = new TextScramble(pageTitle);
     

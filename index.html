@@ -1,11 +1,16 @@
 <!DOCTYPE html>
 <html lang="ca">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hoquei Patins - Passió sobre Rodes</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Teko:wght@300;500;700&family=Arial+Black&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="main/style.css">
 </head>
+
 <body>
 
     <div class="cursor-dot" id="cursor-dot"></div>
@@ -26,12 +31,12 @@
     <section class="hero-fixed" id="home">
         <div class="hero-content">
             <h1 id="scramble-title"></h1>
-            
+
             <p class="hero-subtitle">Més que un esport</p>
 
             <button id="btn-open-video" class="btn-cta">Veure Highlights</button>
         </div>
-        
+
         <div class="scroll-indicator">
             <span>Scroll</span>
             <div class="mouse-icon"></div>
@@ -43,75 +48,47 @@
             <h2>Per què l'Hoquei Patins?</h2>
             <div class="text-block">
                 <p>
-                    Explosivitat, habilitat i treball en equip es combinen en 50 minuts que poden marcar la diferència. 
-                    L'Hoquei Patins no només és un joc, és una forma de vida per a molts. 
+                    Explosivitat, habilitat i treball en equip es combinen en 50 minuts que poden marcar la diferència.
+                    L'Hoquei Patins no només és un joc, és una forma de vida per a molts.
                 </p>
                 <p>
-                     Amb cada partit, els jugadors aboquen tot el treball acumulat als entrenaments, oferint espectacle i emocionant als aficionats.
+                    Amb cada partit, els jugadors aboquen tot el treball acumulat als entrenaments, oferint espectacle i
+                    emocionant als aficionats.
                 </p>
             </div>
         </div>
     </section>
 
-    <footer>
-        <p>&copy; 2025 - Pràctica Llenguatges Web - Àlex Tarazaga Carcaré</p>
-    </footer>
-
     <div id="video-modal" class="modal-overlay">
-        <div class="modal-content">
-            <button class="close-modal" id="btn-close-video">✕</button>
-            <div class="video-container">
-                <iframe 
-                    width="100%" 
-                    height="100%" 
-                    src="https://www.youtube.com/embed/5a4s31p6QEQ" 
-                    title="Video Hoquei" 
-                    frameborder="0" 
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                    allowfullscreen>
-                </iframe>
-            </div>
+    <div class="modal-content">
+        <button class="close-modal" id="btn-close-video">✕</button>
+        
+        <div class="video-container">
+            <iframe 
+                id="youtube-iframe"
+                width="100%" 
+                height="100%" 
+                src="" 
+                title="YouTube video player" 
+                frameborder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                referrerpolicy="strict-origin-when-cross-origin" 
+                allowfullscreen>
+            </iframe>
+
+            <audio id="my-music">
+                <source src="media/musica_video.mp3.mp3" type="audio/mpeg">
+            </audio>
         </div>
     </div>
+</div>
+
+    <footer>
+        <p>&copy; 2025/26 - Pràctica Llenguatges Web - Àlex Tarazaga Carcaré</p>
+    </footer>
 
     <script src="main/script.js"></script>
 
 </body>
+
 </html>
-
-
-<!-- 
-
-IDEES QUE M'AGRADEN PER AFEGIR A LA PAGINA AMB JS 
-
-
-1. cursor personalitzat (rodona/punt buit)
-2. barra de progrés de lectura
-3. botó fosc/clar
-4. botó magnètic?
-5. comptador animat
-6. targetes 3D que s'inclinen amb el ratolí
-7. botó back to top o de navegació lateral amb punts o indicador d'escroll circular
-8. typewriter / efecte glitch
-9. smart header
-10. text scrambler (efecte desencriptat, amb varis títols)
-11. spotlight? 
-12. acordió regles bàsiques
-13. comparador exemple abans vs modern
-14. light box, es veu gran una imatge de la galeria
-15. miniSeccions: actualitat: velocitat i tècnica moderna - Expansió: catalunya esdevé potència mundial - Origens: neix a Anglaterra, finals del segle XIX
-16. text reveeal, una mascara que omple de color el text al fer scroll
-17. masonry grid, galeria estil pinterest, escala de grisos i al fer hover img amb color, tmb skew on scroll inclinació segons velocitat scroll
-
-
-
-
-secundari
-1. fons de partícules amb un canva
-2. pissarra tàctica, drag and drop de les fitxes
-3. cercador en temps real de jugadors
-4. radar chart stats, podria anar amb la busqueda de jugadors
-5. quiz interactiu amb preguntes
-6. tiker notícies, barra inferior amb notícies passant, estil telenotícies
-7. pisarra de dibuix
-8. video modal, al clicar s'obra una directa del dario-->

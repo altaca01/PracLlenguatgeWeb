@@ -1,15 +1,9 @@
-/* =========================================
-   ELEMENTS DEL DOM
-   ========================================= */
 const cursorCircle = document.getElementById("cursor-circle");
 const cursorDot = document.getElementById("cursor-dot");
-// const header = document.getElementById("main-header"); // Ja no cal
 const dynamicBg = document.getElementById("dynamic-bg"); 
 const sectionTitle = document.getElementById("scramble-title"); 
 
-/* =========================================
-   1. CURSOR PERSONALITZAT (Unified Logic)
-   ========================================= */
+/* cursor personalitzat */
 if (cursorCircle) {
     document.addEventListener("mousemove", (e) => {
         const mouseX = e.clientX;
@@ -35,9 +29,7 @@ if (cursorCircle) {
     });
 }
 
-/* =========================================
-   2. FONS DINÀMIC: JUGADES TÀCTIQUES (SVG)
-   ========================================= */
+/* línies fons */
 function createPlayLine() {
     if (!dynamicBg) return;
 
@@ -45,7 +37,6 @@ function createPlayLine() {
     const svg = document.createElementNS(svgNS, "svg");
     svg.setAttribute("class", "play-line-svg");
     
-    // Estils per posicionar l'SVG
     svg.style.position = "absolute";
     svg.style.top = "0"; left: "0";
     svg.style.width = "100%"; height: "100%";
@@ -55,16 +46,16 @@ function createPlayLine() {
     const w = document.documentElement.scrollWidth;
     const h = document.documentElement.scrollHeight;
 
-    // Generació aleatòria de coordenades fora de pantalla
+    // coordenades aleatories
     const sideStart = Math.floor(Math.random() * 4); 
     const margin = 200;
     
     const getEdgeCoord = (side) => {
         switch(side) {
-            case 0: return { x: Math.random() * w, y: -margin }; // Top
-            case 1: return { x: w + margin, y: Math.random() * h }; // Right
-            case 2: return { x: Math.random() * w, y: h + margin }; // Bottom
-            case 3: return { x: -margin, y: Math.random() * h }; // Left
+            case 0: return { x: Math.random() * w, y: -margin }; // dalt
+            case 1: return { x: w + margin, y: Math.random() * h }; // dreta
+            case 2: return { x: Math.random() * w, y: h + margin }; // baix
+            case 3: return { x: -margin, y: Math.random() * h }; // esq
         }
     };
 
@@ -112,15 +103,12 @@ function createPlayLine() {
     setTimeout(() => { svg.remove(); }, (duration + 1) * 1000); 
 }
 
-// Crear línies periòdicament
 if (dynamicBg) {
     setInterval(createPlayLine, 1500); 
     createPlayLine();
 }
 
-/* =========================================
-   3. SCRAMBLE TEXT EFFECT (Títol "NORMATIVA CLAU")
-   ========================================= */
+/* titol efecte scramble */
 class TextScramble {
     constructor(el) {
         this.el = el;
